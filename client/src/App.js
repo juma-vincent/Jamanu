@@ -1,5 +1,6 @@
 
 import './App.css';
+import { homeUrl } from './utils';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
 
      <div style={{color:'Orange', fontSize:'29px', paddingTop:'7px',  fontWeight:'bold' 
     }}>Jamanu Food Lover's Market</div>
-      <a href='http://localhost:5000/auth/google'><button style={{
+      <a href={`${homeUrl}/auth/google`}><button style={{
         padding:'7px', backgroundColor:'#0FB213',
          color:'white',
          border:'none',
