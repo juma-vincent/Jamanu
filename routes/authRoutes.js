@@ -5,22 +5,28 @@ module.exports = (app)=> {
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['profile', 'email',  ]    
     }));
+     
+    app.get('/api/google_auth_redirect', (req, res)=>{
+        res.redirect('/auth/google');
+    })
     
     app.get('/auth/google/callback',
      passport.authenticate('google'),
      (req, res)=>{
-         res.redirect('/dashboard')
+        //  res.redirect('http://localhost:3000/dashboard')
+        res.redirect('/api/current_user')
         }
+        
      );
 
     app.get('/api/current_user', (req,res)=>{
         res.json(req.user);
-        
+                
     });
 
     app.get('/api/logout', (req, res)=>{
         req.logout(); 
-        res.redirect('/dashboard')
+        res.redirect('/')
     });
 };
 

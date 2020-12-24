@@ -1,13 +1,13 @@
 import React from "react";
 import './App.css';
-import Header from './components/Header';
+// import Header from './components/Header';
 import { homeUrl } from './utils';
 import { Route } from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './actions';
 import UserDashboard from "./components/UserDashboard";
 
-const Home =()=> <div>I am home</div>
+
 
 
 class App extends React.Component {
@@ -17,42 +17,49 @@ class App extends React.Component {
   // };
 
   componentDidMount() {     
-    this.props.fetchUser();   
-    
+    this.props.fetchUser();     
     
   }
+  
+
    renderButton = ()=>{
     return(
-      <button onClick={()=>this.props.logInUser() } style={{
-        padding:'10px', backgroundColor:'#0FB213',
-         color:'white',
-         border:'none',
-         outline: 'none',
-         position:'absolute',
-         top:'100px',
-         right: '26px',
-         cursor: 'pointer'
-         }}>Login with Google</button>
+      
+      <a href={`${homeUrl}/auth/google`} >
+        <button    
+      style={{
+      padding:'10px', backgroundColor:'#0FB213',
+       color:'white',
+       border:'none',
+       outline: 'none',
+       position:'absolute',
+       top:'100px',
+       right: '26px',
+       cursor: 'pointer'
+    }} >Login with Google </button></a>
+
+     
+        
         
     );
   }
 
-      render() {
+      render() {       
         
-        console.log(this.props)
         return (
           <div className="App"  >
       
-      <Route exact path='/dashboard'component={Home} />
-      <Route exact path='/'component={UserDashboard} />
-        <div className="header" style={{height:'70px', backgroundColor:'#DAF7A6 ',
+      {/* <Route exact path='/'component={Home} /> */}
+      <Route exact path='/dashboard'component={UserDashboard} />
+        <div className="header" style={{height:'90px', backgroundColor:'#DAF7A6 ',
         position:'relative'
         }}>
-            
+        {/* <Header  user={this.props.auth}/> */}
+
               <div style={{color:'Orange', fontSize:'29px', paddingTop:'7px',  fontWeight:'bold' 
               }}>Jamanu Food Lover's Market</div>
           
-          <Header user={this.props.auth}/>
+          
         
         </div>
         
