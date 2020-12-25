@@ -1,5 +1,7 @@
 import React from "react";
+import { homeUrl } from "../utils";
 import UserDashboard from "./UserDashboard";
+
 
 
 
@@ -7,15 +9,36 @@ class Header extends React.Component {
         
 
     renderContent =()=>{
-        if(this.props.user){
-            return  <UserDashboard user={this.props.user}/>;
-        } 
-        return <h1>Hello guest</h1>;
+        switch(this.props.user){
+            case null:
+                return 
+            case false:
+                return <a href={`${homeUrl}/auth/google`} > 
+                <button    
+              style={{
+              padding:'10px', backgroundColor:'#0FB213',
+               color:'white',
+               border:'none',
+               outline: 'none',
+               position:'absolute',
+               top:'20px',
+               right: '26px',
+               cursor: 'pointer'
+            }} >Login with Google </button></a>
+            default:
+                return    <a>  href={`${homeUrl}/api/logout`} <button> Logout</button> </a>
+                    
+        }
+        
     }
 
     render() {
         
-        return <div>{this.renderContent()}</div>
+        return <div>
+            <div style={{color:'Orange', fontSize:'29px', paddingTop:'7px',  fontWeight:'bold' 
+              }}>Jamanu Food Lover's Market</div>
+            {this.renderContent()}
+            </div>
       
     }
   }
