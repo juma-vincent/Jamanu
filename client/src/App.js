@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import * as actions from './actions';
 import UserDashboard from "./components/UserDashboard";
 import AdminDashboard from "./components/AdminDashboard";
-import axios from 'axios';
+
 
 
 
@@ -15,9 +15,7 @@ class App extends React.Component {
   
 
   componentDidMount() {     
-    // this.props.fetchUser();  
-    axios.get(`${homeUrl}/api/current_user`)
-    .then(res=> console.log(res));   
+    this.props.fetchUser();         
     
   }       
         

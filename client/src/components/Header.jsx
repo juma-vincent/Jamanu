@@ -11,7 +11,7 @@ class Header extends React.Component {
     renderContent =()=>{
         switch(this.props.user){
             case null:
-                return 
+                return <h4>Loading</h4>
             case false:
                 return <a href={`${homeUrl}/auth/google`} > 
                 <button    

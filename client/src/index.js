@@ -7,8 +7,10 @@ import { createStore, applyMiddleware } from 'redux';//-------------
 import reducers from './reducers';//-------------
 import { Provider } from 'react-redux';//-------------
 import reduxThunk from 'redux-thunk';
+import logger from 'redux-logger';
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));//-------------
+const middlewares = [reduxThunk, logger];
+const store = createStore(reducers, {}, applyMiddleware(...middlewares));//-------------
 
 ReactDOM.render(
   
