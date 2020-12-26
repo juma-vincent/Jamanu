@@ -29,12 +29,14 @@ class Header extends React.Component {
                 return (
                   <a href={`${homeUrl}/api/logout`}>
                     <button tyle={{
-                padding:'10px', 
-                 color:'white',                 
-                 position:'absolute',
-                 top:'20px',
-                 right: '26px',
-                 backgroundColor:'#0FB213'
+                padding:'10px', backgroundColor:'#0FB213',
+                color:'white',
+                border:'none',
+                outline: 'none',
+                position:'absolute',
+                top:'20px',
+                right: '26px',
+                cursor: 'pointer'
                  
               }}>
                        Logout</button> 
