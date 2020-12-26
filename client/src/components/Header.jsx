@@ -27,7 +27,18 @@ class Header extends React.Component {
             }} >Login with Google </button></a>
             default:
                 return (
-                  <a href={`${homeUrl}/api/logout`}><button> Logout</button> </a>
+                  <a href={`${homeUrl}/api/logout`}>
+                    <button tyle={{
+                padding:'10px', 
+                 color:'white',                 
+                 position:'absolute',
+                 top:'20px',
+                 right: '26px',
+                 backgroundColor:'#0FB213'
+                 
+              }}>
+                       Logout</button> 
+                    </a>
                   
                 )   
                     
@@ -43,7 +54,7 @@ class Header extends React.Component {
               {
               loggedInUser? <div style={{
                 padding:'10px', 
-                 color:'white',                 
+                 color:'brown',                 
                  position:'absolute',
                  top:'20px',
                  left: '26px',
