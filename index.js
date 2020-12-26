@@ -6,6 +6,8 @@ const keys = require('./config/keys');
 const cors = require("cors");
 const bodyParser = require('body-parser')
 require('./models/User');
+require('./models/Product');
+require('./models/Category');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
@@ -24,6 +26,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/productRoutes')(app);
 
 
 if(process.env.NODE_ENV === 'production'){

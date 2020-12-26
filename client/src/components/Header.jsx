@@ -26,7 +26,7 @@ class Header extends React.Component {
                cursor: 'pointer'
             }} >Login with Google </button></a>
             default:
-                return    <a>  href={`${homeUrl}/api/logout`} <button> Logout</button> </a>
+                return    <a href={`${homeUrl}/api/logout`}><button> Logout</button> </a>
                     
         }
         
