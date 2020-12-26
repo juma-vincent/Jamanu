@@ -26,18 +26,31 @@ class Header extends React.Component {
                cursor: 'pointer'
             }} >Login with Google </button></a>
             default:
-                return    <a href={`${homeUrl}/api/logout`}><button> Logout</button> </a>
+                return (
+                  <a href={`${homeUrl}/api/logout`}><button> Logout</button> </a>
+                  
+                )   
                     
         }
         
     }
 
     render() {
-        
+      const loggedInUser =this.props.user;
         return <div>
             <div style={{color:'Orange', fontSize:'29px', paddingTop:'7px',  fontWeight:'bold' 
               }}>Jamanu Food Lover's Market</div>
+              {
+              loggedInUser? <div style={{
+                padding:'10px', 
+                 color:'white',                 
+                 position:'absolute',
+                 top:'20px',
+                 left: '26px',
+                 
+              }}>Welcome {loggedInUser.name}</div>: null }
             {this.renderContent()}
+            
             </div>
       
     }
