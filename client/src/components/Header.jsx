@@ -28,7 +28,7 @@ class Header extends React.Component {
             default:
                 return (
                   <a href={`${homeUrl}/api/logout`}>
-                    <button tyle={{
+                    <button style={{
                 padding:'10px', backgroundColor:'#0FB213',
                 color:'white',
                 border:'none',
@@ -60,6 +60,8 @@ class Header extends React.Component {
                  position:'absolute',
                  top:'20px',
                  left: '26px',
+                 fontWeight: 'bold'
+
                  
               }}>Welcome {loggedInUser.name}</div>: null }
             {this.renderContent()}
