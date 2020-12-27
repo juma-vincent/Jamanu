@@ -5,7 +5,8 @@ const UserSchema = new Schema({
     googleId: String,
     name: String,  
     email: String,
-    isAdmin:{type: Boolean, default: false}  
+    isAdmin:{type: Boolean, default: false} ,
+    uploadedProducts: {type: Number, default: 0} 
 });
 
 mongoose.model('users', UserSchema);
