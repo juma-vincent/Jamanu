@@ -30,8 +30,13 @@
       justify-content: flex-end;
 
       .welcome {
-        margin-right: 20px;
+        margin-right: 89px;
         // background-color: rgb(205, 120, 50);
+        color: rgb(32, 190, 58);
+        @media screen and (max-width: 800px) {
+          
+          margin-right: 60px;
+        }
       }
     }
 
@@ -78,8 +83,16 @@
           padding: 0;
           font-size: 13px;
           padding: 0 4.5px;
+          margin-right: 25px;
         }
       }
+      .shop{
+        @media screen and (max-width: 800px) {
+        margin-left: -9px;
+        margin-right: 35px;
+        }
+      }
+
       .google {
         background-color: rgba(250, 242, 242, 0.849);
         box-shadow: 1px 5px 5px 1px rgba(63, 46, 46, 0.2);
@@ -92,6 +105,8 @@
         margin-left: 20px;
         display: flex;
         transition: unset;
+        padding-left: 3px;
+        margin-right: 20px;
         
         
                 
@@ -100,11 +115,11 @@
           
           
           
-          // @media screen and (max-width: 800px) {
+          @media screen and (max-width: 800px) {
             
-          //    margin-left: -34px;
+             margin-left: -24px;
              
-          //   }
+            }
           .icon {           
             
             background-color:transparent;
@@ -112,42 +127,36 @@
             width: 25px;
             padding: 3px 5px;
             margin: 0 10px;
+            margin-right: 1px;
             
             
+            @media screen and (max-width: 800px) {
+            
+              margin-right: -2.2px;
+              margin-top: -2.7px;
+              
+             }
             
           }
 
           @media screen and (max-width: 800px) {
-            //  margin-bottom: -17px;
-            //  margin-left: -44px;
+            padding-top: 7px;
           }
         }
 
         
   
-        // &:hover {
-        //   color: rgb(156, 145, 145);
-        //   animation: pulsate 1s;;
-        //   padding: 10px;
-        //   border-top: none;
-        // }
+        
   
-        // &:focus {
-        //   outline: none;
-        //   animation: pulsate 1s;;
-        //   color: white;
-        //   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
-        //   padding: 5px;
-        // }
-  
-        // @media screen and (max-width: 800px) {
-        //   margin: 0 6px;        
-        //   font-size: 12px;
-        //   padding: 2 4.5px;
-        //   margin-right: 12px;
-        //   margin-left: 10px;
-  
-        // }
+        @media screen and (max-width: 800px) {
+          margin: 0 6px;        
+          font-size: 11px;
+          padding: 2 4.5px;
+          margin-right: 7px;
+          margin-left: -25px;
+          padding-left: 15px;
+            
+        }
        
       }
   

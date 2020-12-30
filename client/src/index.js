@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from "./serviceWorker";
-// import { store } from "./redux/store";
+// import {createStore, applyMiddleware} from 'redux';
+// import reduxThunk from 'redux-thunk';
+// import logger from 'redux-logger'
+
+
 
 
 
@@ -12,12 +16,13 @@ import * as serviceWorker from "./serviceWorker";
 // import { createStore, applyMiddleware } from 'redux';//-------------
 // import reducers from './reducers';//-------------
 import { Provider } from 'react-redux';//-------------
-import reduxThunk from 'redux-thunk';
-import logger from 'redux-logger';
+
+
 import { store } from './redux/store';
 
+
 // const middlewares = [reduxThunk, logger];
-// const store = createStore(reducers, {}, applyMiddleware(...middlewares));//-------------
+// const store = createStore(rootReducer, {}, applyMiddleware(...middlewares));//-------------
 
 ReactDOM.render(
   

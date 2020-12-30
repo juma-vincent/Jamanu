@@ -11,11 +11,15 @@ import CheckoutPage from "./pages/checkout-page/checkout-page";
 import Footer from "./components/footer/footer";
 import ShopPage from "./pages/shop-page/shop-page"
 import { fetchUser } from "./redux/user/user.actions";
+import axios from 'axios'
+
 
 
 class App extends Component {
+  
   componentDidMount() {
-    fetchUser()
+    this.props.fetchUser()
+    
   }
 
   render() {
@@ -45,15 +49,15 @@ class App extends Component {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  fetchUser: () => dispatch(fetchUser()),
+});
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 

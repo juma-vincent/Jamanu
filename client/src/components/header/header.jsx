@@ -23,7 +23,7 @@ const Header = ({ currentUser, hidden}) => {
           <div className='no-options'>
             <div className='welcome'>
             {currentUser?(
-                <h3>Welcome {currentUser.name}</h3>
+                <h3>Welcome {currentUser.name} </h3>
               )
               :null
               }
@@ -35,11 +35,11 @@ const Header = ({ currentUser, hidden}) => {
             <Link to="/" className="option">
               Home
             </Link>
-            <Link to="/shop" className="option">
+            <Link to="/shop" className="option shop">
               Shop
             </Link>
             {currentUser ? (
-              <a  href="/api/logout" className="option google" >
+              <a  href="/api/logout" className="option " >
                 Signout
               </a>
             ) : (
