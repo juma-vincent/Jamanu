@@ -34,7 +34,8 @@ module.exports = (app)=>{
         res.send(products);
     })
 
-    app.get('/api/all_products', (req, res)=>{
-        res.send('All products');
+    app.get('/api/all_products', async(req, res)=>{
+        const allProducts = await Product.find({});
+        res.send(allProducts);
     })
 }

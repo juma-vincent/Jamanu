@@ -1,0 +1,29 @@
+.products-preview {
+  width: 93vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  background-color: rgb(252, 245, 245);
+  border-radius: 3px;
+  box-shadow: 0px 5px 10px rgba(63, 46, 46, 0.4);
+  @media screen and (max-width: 800px) {
+    align-items: center;
+  }
+
+  .preview {
+    display: flex;
+    justify-content: space-around;
+    @media screen and (max-width: 800px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+    }
+  }
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+}

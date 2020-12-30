@@ -11,14 +11,15 @@ module.exports = (app)=> {
      passport.authenticate('google'),
      (req, res)=>{
          res.redirect('http://localhost:3000/');
-        // res.redirect('/api/current_user')
+        
         }
         
      );
 
     app.get('/api/current_user', (req, res)=>{
-        res.send({name: "john"})
-        // res.send(req.user);       
+        
+        res.send(req.user);    
+          
                 
     });
 

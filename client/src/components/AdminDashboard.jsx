@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import { homeUrl } from "../utils";
 import { uploadProduct } from "../actions";
 
 
@@ -22,7 +21,7 @@ class AdminDashboard extends React.Component {
       const { name, imageUrl, price, category, unitType } = this.state;
       const { history } = this.props;
 
-      const res = axios.post(`${homeUrl}/api/new_product`,
+      const res = axios.post(`/api/new_product`,
       {
       name,
       imageUrl, 

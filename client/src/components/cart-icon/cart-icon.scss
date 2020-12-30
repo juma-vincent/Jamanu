@@ -1,0 +1,47 @@
+.cart-icon {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  @media screen and (max-width: 800px) {
+    width: 35px;
+    height: 35px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 25px;
+    height: 25px;
+  }
+
+  .items-count {
+    position: absolute;
+    font-size: 13px;
+    font-weight: bolder;
+    right: 22px;
+    bottom: 30px;
+    color: rgb(218, 92, 8);
+    @media screen and (max-width: 800px) {
+      right: 16.5px;
+      bottom: 22px;
+    }
+    @media screen and (max-width: 400px) {
+      right: 12px;
+      bottom: 17px;
+    }
+  }
+
+  .shopping-icon {
+    width: 35px;
+    height: 35px;
+    fill: rgb(179, 157, 35);
+    &:hover {
+      fill: rgb(97, 196, 31);
+    }
+    @media screen and (max-width: 800px) {
+      width: 29px;
+      height: 29px;
+    }
+  }
+}

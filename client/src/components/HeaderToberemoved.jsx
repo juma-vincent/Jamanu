@@ -1,5 +1,4 @@
 import React from "react";
-import { homeUrl } from "../utils";
 import UserDashboard from "./UserDashboard";
 
 
@@ -13,7 +12,7 @@ class Header extends React.Component {
             case null:
                 return <h4>Loading</h4>
             case false:
-                return <a href={`${homeUrl}/auth/google`} > 
+                return <a href={`/auth/google`} > 
                 <button    
               style={{
               padding:'10px', backgroundColor:'#0FB213',
@@ -27,7 +26,7 @@ class Header extends React.Component {
             }} >Login with Google </button></a>
             default:
                 return (
-                  <a href={`${homeUrl}/api/logout`}>
+                  <a href={`/api/logout`}>
                     <button style={{
                 padding:'10px', backgroundColor:'#0FB213',
                 color:'white',

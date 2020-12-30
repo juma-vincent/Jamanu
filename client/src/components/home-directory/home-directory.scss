@@ -1,0 +1,12 @@
+.home-directory {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  // background-color: yellowgreen;
+  padding: 0 10px;
+
+  @media screen and (max-width: 800px) {
+    padding: 0;
+  }
+}
