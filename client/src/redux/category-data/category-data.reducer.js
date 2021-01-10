@@ -40,12 +40,12 @@ const INITIAL_STATE = {
     ],
   };
   
-  const homeDirectoryReducer = (state = INITIAL_STATE, action) => {
+  const categoryDataReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
       default:
         return state;
     }
   };
   
-  export default homeDirectoryReducer;
+  export default categoryDataReducer;
   

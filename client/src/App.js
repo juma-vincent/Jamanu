@@ -23,8 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser } = this.props;
-    console.log(currentUser)
+    const { currentUser } = this.props;    
     return (
       <div className="App">
         <Header />

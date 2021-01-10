@@ -10,3 +10,4 @@ const middlewares = [logger, thunk];
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 
+export default { store };

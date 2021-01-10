@@ -1,14 +1,17 @@
 import React from "react";
 import "./homepage.scss";
-
-import HomeDirectory from '../../components/home-directory/home-directory'
 import Features from "../../components/features/features";
+import Categories from "../../components/categories/categories";
+import CategoriesSlider from "../../components/categories-slider/categories-slider";
+
+
 
 const Homepage = () => {
   return (
     <div className="homepage">
-      <HomeDirectory />
+     
       <Features />
+      <CategoriesSlider/>
     </div>
   );
 };
