@@ -11,7 +11,7 @@ import { SliderContainer} from './categories-slider.styles';
 
 
 const CategoriesSlider = ({autoPlay, categoryData}) => {
-    const [x, setX] = useState(0);
+    const [x, setX] = useState(0);    
 
     const autoPlayRef = useRef();
 
@@ -33,12 +33,12 @@ const CategoriesSlider = ({autoPlay, categoryData}) => {
     const goLeft= ()=>{
         x === 0? setX(-100*(categoryData.length -1)) : setX(x+100);
         
-        console.log(x)
+        
     }
 
     const goRight= ()=>{
-        (x === -100*(categoryData.length -1))? setX(0) : setX(x-100);
-        console.log(x)
+        (x === -100*(categoryData.length -1))? setX(0)  : setX(x-100);
+
     }
 
     return (
@@ -52,8 +52,9 @@ const CategoriesSlider = ({autoPlay, categoryData}) => {
                     // title={title} 
                     // subtitle={subtitle} 
                     // buttonText={buttonText}/>
-
-                    <CategoryItem key={id} {...otherProps}/>
+                    
+                    <CategoryItem  key={id} x={x} {...otherProps} />
+                    
                 )
             }
             {/* <Arrow direction='left' handleClick={goLeft}/>

@@ -10,7 +10,7 @@ module.exports = (app)=> {
     app.get('/auth/google/callback',
      passport.authenticate('google'),
      (req, res)=>{
-         res.redirect('/');
+         res.redirect('http://localhost:3000/');
         
         }
         
@@ -18,8 +18,7 @@ module.exports = (app)=> {
 
     app.get('/api/current_user', (req, res)=>{
         
-        res.send(req.user);    
-          
+        res.send(req.user);             
                 
     });
 

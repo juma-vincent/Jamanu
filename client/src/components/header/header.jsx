@@ -10,7 +10,7 @@ import { createStructuredSelector } from "reselect";
 import { ReactComponent as GoogleIcon } from "../../assets/icons/google.svg";
 
 
-const Header = ({ currentUser, hidden}) => {
+const Header = ({ currentUser, hidden}) => {  
   return (
     
         

@@ -4,8 +4,13 @@
   width: 100vw;
   color: white;
   padding: 20px;
+   
   text-align: center;
-  background-image: linear-gradient(to right bottom, #000000, #0a0a0a6c);
+  background-image: linear-gradient(
+    rgba(21, 28, 58, 0.88),
+    rgba(21, 28, 58, 0.88)
+  ),
+  url("https://i.imgur.com/LD7zbnE.jpg");
   .title {
     font-weight: 700;
   }

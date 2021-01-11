@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <div className="footer-container">
       <h4 className="title"> Contact Information</h4>
-      <small> Email: vinsoncode@gmail.com </small> <br />
-      <small>Phone: +254712062516</small> <br />
-      <small>&copy; 2020 Intelligent Farm. All rights reserved.</small>
+      <small> Email: jamanu@gmail.com </small> <br />
+      <small>Phone: +254700000000</small> <br />
+      <small>&copy; 2021 Jamanu Food Lovers Market. All rights reserved.</small>
     </div>
   );
 };

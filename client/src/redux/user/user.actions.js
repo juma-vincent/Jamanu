@@ -9,6 +9,13 @@ export const fetchUser =()=>
         dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
     }
 
+export const uploadProduct =(user, history)=> dispatch =>
+{
+    dispatch({type: UserActionTypes.FETCH_USER, payload: user});
+    history.push('/products');
+    console.log("UPLOADED BY", user);  
+}    
+
 
         
    

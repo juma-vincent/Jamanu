@@ -1,12 +1,15 @@
 import React from "react";
-import "./category-item.scss";
 import { withRouter } from "react-router-dom";
+import { CategoryItemContainer } from "./category-item.styled.jsx";
 
-const CategoryItem = ({ title, imageUrl, linkUrl, history, match }) => {
+const CategoryItem = ({ title, imageUrl, linkUrl, history, match , x }) => {
+   
   return (
-    <div
-      className="category-item"
+    <CategoryItemContainer
+    
+    //  style={ doTranslate ? { transform: `translateX(${x}%)`} : { transform: 'translateX(0)'} }            
       onClick={() => history.push(`${match.url}${linkUrl}`)}
+      style={{transform:`translateX(${x}%)`}}      
     >
       <div
         className="background-image"
@@ -18,7 +21,7 @@ const CategoryItem = ({ title, imageUrl, linkUrl, history, match }) => {
         <h1 className="title"> {title.toUpperCase()} </h1>
         <span className="subtitle">VIEW ALL</span>
       </div>
-    </div>
+    </CategoryItemContainer>
   );
 };
 

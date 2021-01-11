@@ -11,7 +11,9 @@ import CheckoutPage from "./pages/checkout-page/checkout-page";
 import Footer from "./components/footer/footer";
 import ShopPage from "./pages/shop-page/shop-page"
 import { fetchUser } from "./redux/user/user.actions";
-import axios from 'axios'
+
+import AdminDashboard from "./components/admin-dashboard/admin-dashboard";
+import UserDashboard from "./components/user-dashboard/user-dashboard";
 
 
 
@@ -27,20 +29,23 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={ShopPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path="/admin" component={AdminDashboard} />
           {/* <Route
             exact
-            path="/signin"
-            render={() => (currentUser ? <Redirect to="/" /> : <SigninPage />)}
+            path="/admin"
+            render={() => (currentUser && currentUser.isAdmin ? <AdminDashboard/> : <Redirect to="/"  />)}
           />
           <Route
             exact
-            path="/signup"
-            render={() => (currentUser ? <Redirect to="/" /> : <SignupPage />)}
+            path="/dashboard"
+            render={() => (currentUser ? <UserDashboard/> : <Redirect to="/"  />)}
           /> */}
+
         </Switch>
         <Footer />
       </div>

@@ -2,12 +2,15 @@ import styled from 'styled-components';
 
 export const SliderContainer = styled.div`  
     width: 100vw;
-    height: 70vh;
+    height: 60vh;
     box-sizing: border-box;
     margin: 0 auto;
-    display: flex;    
+    display: flex;       
     position: relative;
-    overflow: hidden;
+    overflow: hidden;    
+    align-items: center;
+    
+    
     
     
 

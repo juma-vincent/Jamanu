@@ -6,12 +6,13 @@ import CategoriesSlider from "../../components/categories-slider/categories-slid
 
 
 
+
 const Homepage = () => {
   return (
     <div className="homepage">
      
       <Features />
-      <CategoriesSlider/>
+      <CategoriesSlider autoPlay={5}/>
     </div>
   );
 };
