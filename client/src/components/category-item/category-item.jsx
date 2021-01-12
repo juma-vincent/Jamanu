@@ -5,9 +5,8 @@ import { CategoryItemContainer } from "./category-item.styled.jsx";
 const CategoryItem = ({ title, imageUrl, linkUrl, history, match , x }) => {
    
   return (
-    <CategoryItemContainer
-    
-    //  style={ doTranslate ? { transform: `translateX(${x}%)`} : { transform: 'translateX(0)'} }            
+    <CategoryItemContainer    
+               
       onClick={() => history.push(`${match.url}${linkUrl}`)}
       style={{transform:`translateX(${x}%)`}}      
     >

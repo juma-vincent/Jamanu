@@ -16,7 +16,7 @@ const ProductItem = ({ item, addItem }) => {
       <div className="product-footer">
         <div className="name">{name}</div>
         <div className="price">
-          ${price}
+          KES {price}
           {perunit}
         </div>
       </div>

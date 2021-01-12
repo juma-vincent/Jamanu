@@ -4,25 +4,11 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import * as serviceWorker from "./serviceWorker";
-// import {createStore, applyMiddleware} from 'redux';
-// import reduxThunk from 'redux-thunk';
-// import logger from 'redux-logger'
-
-
-
-
-
-
-// import { createStore, applyMiddleware } from 'redux';//-------------
-// import reducers from './reducers';//-------------
-import { Provider } from 'react-redux';//-------------
-
-
+import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
 
-// const middlewares = [reduxThunk, logger];
-// const store = createStore(rootReducer, {}, applyMiddleware(...middlewares));//-------------
+
 
 ReactDOM.render(
   

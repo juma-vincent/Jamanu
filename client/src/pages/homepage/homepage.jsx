@@ -9,7 +9,7 @@ import CategoriesSlider from "../../components/categories-slider/categories-slid
 
 const Homepage = () => {
   return (
-    <div className="homepage">
+    <div className="homepage">      
      
       <Features />
       <CategoriesSlider autoPlay={5}/>

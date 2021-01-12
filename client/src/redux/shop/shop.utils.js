@@ -1,7 +1,7 @@
 import { groupBy } from "lodash";
 
 export const convertProductsArrayToObject = (productsArray) => {
-  const categoriesObject = groupBy(productsArray, "category");
+  const categoriesObject = groupBy(productsArray, "category");  
   const categoriesKeyNames = Object.keys(categoriesObject);
   return categoriesKeyNames.map((category) => {
     return {
@@ -12,3 +12,4 @@ export const convertProductsArrayToObject = (productsArray) => {
     };
   });
 };
+

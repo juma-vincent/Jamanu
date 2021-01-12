@@ -1,4 +1,3 @@
-import { SHOP_DATA } from "./shop-data";
 import { ShopActionTypes } from "./shop.types";
 import { convertProductsArrayToObject } from "./shop.utils";
 
@@ -26,6 +25,7 @@ export const fetchProductsStartAsync = () => {
       .then((response) => response.json())
       .then((data) => {
         const productsObject = convertProductsArrayToObject(data);
+        console.log(productsObject)
         dispatch(fetchProductsSuccess(productsObject));
       })
       .catch((error) => dispatch(fetchProductsFailure(error.message)));

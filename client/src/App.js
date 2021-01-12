@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import "./App.css";
 import Homepage from "./pages/homepage/homepage";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -12,42 +12,70 @@ import Footer from "./components/footer/footer";
 import ShopPage from "./pages/shop-page/shop-page"
 import { fetchUser } from "./redux/user/user.actions";
 
-import AdminDashboard from "./components/admin-dashboard/admin-dashboard";
 import UserDashboard from "./components/user-dashboard/user-dashboard";
+import Spinner from "./components/spinner/spinner";
+import AdminDashboard from "./pages/admin-dashboard/admin-dashboard";
+
+
+
+
 
 
 
 class App extends Component {
+
+  state = {
+    isLoaded: false,
+  }
   
-  componentDidMount() {
-    this.props.fetchUser()
+   async componentDidMount() {
+     await this.props.fetchUser();
+     this.setState({isLoaded: true})
     
   }
 
   render() {
-    const { currentUser } = this.props;    
-    return (
-      <div className="App">
-        <Header />
-        
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <Route exact path="/admin" component={AdminDashboard} />
-          {/* <Route
-            exact
-            path="/admin"
-            render={() => (currentUser && currentUser.isAdmin ? <AdminDashboard/> : <Redirect to="/"  />)}
-          />
-          <Route
-            exact
-            path="/dashboard"
-            render={() => (currentUser ? <UserDashboard/> : <Redirect to="/"  />)}
-          /> */}
+    const { currentUser } = this.props;   
+     
 
-        </Switch>
-        <Footer />
+
+    return (
+
+      <div>
+            {
+              this.state.isLoaded?
+               (
+                  <div className='App'>
+                  <Header />
+                    
+                  <Switch>
+                   
+                      <Route exact path="/" component={Homepage} />
+                      <Route path="/shop" component={ShopPage} />
+                      <Route exact path="/checkout" component={CheckoutPage} />    
+                                          
+                      <Route                      
+                      path="/admin"
+                      render={(props) => (currentUser? <AdminDashboard {...props}/> : <Redirect to="/"  />)}
+                      />
+                      <Route
+                      exact
+                      path="/dashboard"
+                      render={() => (currentUser ? <UserDashboard/> : <Redirect to="/"  />)}
+                      />
+                   
+
+                  </Switch>
+                  <Footer />
+                </div>
+
+              ) :
+              
+                 <Spinner/>
+            }
+                    
+            
+        
       </div>
     );
   }

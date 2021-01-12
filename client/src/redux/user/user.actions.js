@@ -9,11 +9,20 @@ export const fetchUser =()=>
         dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
     }
 
-export const uploadProduct =(user, history)=> dispatch =>
-{
-    dispatch({type: UserActionTypes.FETCH_USER, payload: user});
-    history.push('/products');
-    console.log("UPLOADED BY", user);  
+export const uploadProduct =({name, imageurl, price, category, unitType }, history)=> 
+ async dispatch =>{
+    const res = await axios.post(`/api/new_product`,
+      {
+      name,
+      imageurl, 
+      price, 
+      category,
+      unitType
+      }
+      );
+    dispatch({type: UserActionTypes.FETCH_USER, payload: res.data});
+    history.push('/admin/products');
+    console.log("UPLOADED BY", res.data);  
 }    
 
 
