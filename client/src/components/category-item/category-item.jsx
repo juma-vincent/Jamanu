@@ -18,7 +18,7 @@ const CategoryItem = ({ title, imageUrl, linkUrl, history, match , x }) => {
       ></div>
       <div className="content">
         <h1 className="title"> {title.toUpperCase()} </h1>
-        <span className="subtitle">VIEW ALL</span>
+        <span className="subtitle">SHOP NOW</span>
       </div>
     </CategoryItemContainer>
   );

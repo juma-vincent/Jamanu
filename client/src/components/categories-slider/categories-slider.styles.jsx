@@ -3,12 +3,21 @@ import styled from 'styled-components';
 export const SliderContainer = styled.div`  
     width: 100vw;
     height: 60vh;
-    box-sizing: border-box;
-    margin: 0 auto;
-    display: flex;       
+    margin:auto;
+    background-color: whitesmoke;
     position: relative;
-    overflow: hidden;    
-    align-items: center;
+    
+
+    #wrapper{
+        width: 90%;
+        height: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        display: flex;          
+        overflow: hidden;    
+        align-items: center;
+        
+    }
     
     
     

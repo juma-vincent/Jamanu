@@ -21,7 +21,7 @@ class UploadNewProduct extends Component {
       handleChange= (event)=>{
           const {name, value} = event.target;
           this.setState({...this.state, [name]: value});
-          console.log(this.state)
+          
          
       }
   
@@ -83,7 +83,7 @@ class UploadNewProduct extends Component {
                         <option value="vegetables">Vegetable</option>
                         <option value="fruits">Fruit</option>
                         <option value="tubers">Tuber</option>
-                        <option value="livestock">Livestock</option>
+                        <option value="meat">Meat</option>
                         </select>
                     </label>
                     
@@ -95,14 +95,16 @@ class UploadNewProduct extends Component {
                         </select>
                     </label>
   
-                    <span className={`${uploadText ==='Uploading'? 'uploading': null}`}><CustomButton id='btn'  onClick={(event)=>{
-                    this.handleSubmit(event);
-                    this.setState({...this.state, uploadText:'Uploading'});
-                    }}
-                    
-                    >
-                    {uploadText} <span className='spin'></span>
-                    </CustomButton></span>
+                    <span className={`${uploadText ==='Uploading'? 'uploading': null}`}>
+                        <CustomButton id='btn'  onClick={(event)=>{
+                        this.handleSubmit(event);
+                        this.setState({...this.state, uploadText:'Uploading'});
+                        }}                        
+                        >
+                        {uploadText} <span className='spin'></span>
+
+                        </CustomButton>
+                    </span>
                 </FormContainer>
   
                 

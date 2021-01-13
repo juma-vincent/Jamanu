@@ -3,8 +3,7 @@ import CategoryItem from '../category-item/category-item';
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCategories } from '../../redux/category-data/category-data.selectors';
-
-// import Arrow from '../arrow/arrow';
+import Arrow from '../arrow/arrow';
 
 
 import { SliderContainer} from './categories-slider.styles';
@@ -42,25 +41,30 @@ const CategoriesSlider = ({autoPlay, categoryData}) => {
     }
 
     return (
-        <SliderContainer>
-            {categoryData.map(({id, ...otherProps })=> 
-                    
-                       
-                    // <Slide key={imageUrl}
-                    // x={x}
-                    // imageUrl={imageUrl} 
-                    // title={title} 
-                    // subtitle={subtitle} 
-                    // buttonText={buttonText}/>
-                    
-                    <CategoryItem  key={id} x={x} {...otherProps} />
-                    
-                )
-            }
-            {/* <Arrow direction='left' handleClick={goLeft}/>
-            <Arrow direction='right' handleClick={goRight}/> */}
-            
-        </SliderContainer>
+        
+            <SliderContainer>
+
+                <div id='wrapper'>
+                  {categoryData.map(({id, ...otherProps })=>
+                  
+                  
+                  // <Slide key={imageUrl}
+                  // x={x}
+                  // imageUrl={imageUrl}
+                  // title={title}
+                  // subtitle={subtitle}
+                  // buttonText={buttonText}/>
+                  
+                  <CategoryItem  key={id} x={x} {...otherProps} />
+                  
+                  )
+                  }
+                  
+                </div>
+                <Arrow direction='left' handleClick={goLeft}/>
+                <Arrow direction='right' handleClick={goRight}/>
+            </SliderContainer>
+        
       );
 }
 

@@ -4,7 +4,7 @@ import "./categories.scss";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCategories } from "../../redux/category-data/category-data.selectors";
-import axios from 'axios'
+
 
 
 

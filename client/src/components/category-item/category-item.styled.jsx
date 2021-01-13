@@ -9,7 +9,7 @@ export const CategoryItemContainer = styled.div`
   align-items: center;
   margin: 0px 7.5px 15px;
   overflow: hidden;
-  min-width: 20vw;    
+  min-width: 21.4vw;    
   transition: .9s ease-in-out ;    
        
 

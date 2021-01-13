@@ -1,0 +1,48 @@
+.about-container {
+
+    padding: 20px 40px;
+    margin: 30px auto;
+    width: 100%;
+    border-radius: 3px;
+    
+    
+    background-color: rgba(255, 255, 255, 0.4);
+    // margin: 50px;
+    @media screen and (max-width: 800px) {
+      width: 90%;
+      justify-content: center;
+      margin: 10px auto;
+    }
+
+    .title {      
+      margin: auto;
+      font-weight: 700;
+      font-size: 27px;
+      text-transform: capitalize;      
+      width: 50%;
+      text-align: center;
+
+      @media screen and (max-width: 800px) {
+        
+      }
+    }
+    .content {
+      display: flex;
+      
+      .description {
+        margin: auto;
+
+        width: 50%;
+        padding: 30px;
+        @media screen and (max-width: 800px) {
+          padding: 10px 0;
+          width: 100%;
+        }
+      }
+      @media screen and (max-width: 800px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+}

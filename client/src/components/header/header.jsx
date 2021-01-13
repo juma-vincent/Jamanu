@@ -23,7 +23,12 @@ const Header = ({ currentUser, hidden}) => {
           <div className='no-options'>
             <div className='welcome'>
             {currentUser?(
-                <Link to='/dashboard' style={{color:'green', fontWeight:'bold'}}>My Profile</Link>
+                <div style={{display:'flex', alignItems:'center'}}>
+                  <Link to='/dashboard' style={{color:'green', fontWeight:'bold'}}>{currentUser.name}
+                    <img width='30'height='30' src={currentUser.imageurl}
+                    style={{borderRadius:'50%', marginTop:'5px',marginBottom:'-9px', marginLeft:'5px'  }} alt=""/>
+                  </Link>
+                </div>
               )
               :null
               }
