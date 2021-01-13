@@ -16,7 +16,7 @@ const Header = ({ currentUser, hidden}) => {
         
     <div className="header">
       <Link to="/" className="logo-container">
-        {/* <img src="/images/logo.png" alt="" className="logo" /> */} <h2>Jamanu Food Lover's Market</h2>
+        {/* <img src="/images/logo.png" alt="" className="logo" /> */} <h5>Jamanu Food Lover's Market</h5>
       </Link>
       
       <div className='sub-header'> 
