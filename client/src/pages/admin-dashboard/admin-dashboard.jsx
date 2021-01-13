@@ -11,18 +11,20 @@ import AdminUploadedProducts from "../../components/admin/admin-uploaded-product
   
   const AdminDashboard = ({currentUser, match}) => {
     return ( 
-      <div>
-        
-        <h2>Welcome Admin {currentUser.name}</h2>
-        <Link to='/admin/new_product'>Add new product</Link>
-        <Link to='/admin/products'>View upload history</Link>
-        <Link to='/dashboard'>Back to User Dashboard</Link>
+  <div>
+    
+  <h2>Welcome Admin {currentUser.name}</h2>
+  <div style={{display:'flex',justifyContent:"space-around",width:'50%',margin:'auto',padding:'20px'}}>
+  <Link to='/admin/new_product' style={{backgroundColor:'whitesmoke',padding:'10px'}}>Add new product</Link><br/>
+  <Link to='/admin/products' style={{backgroundColor:'whitesmoke',padding:'10px'}}>View upload history</Link><br/>
+  <Link to='/dashboard' style={{backgroundColor:'whitesmoke',padding:'10px'}}>Back to User Dashboard</Link>
+  </div>
 
-        <Route path={`${match.url}/products`} component={AdminUploadedProducts}/>
-        <Route path={`${match.url}/new_product`} component={UploadNewProduct}/>
-       
-        
-      </div>
+  <Route path={`${match.url}/products`} component={AdminUploadedProducts}/>
+  <Route path={`${match.url}/new_product`} component={UploadNewProduct}/>
+    
+    
+  </div>
      );
   }
 

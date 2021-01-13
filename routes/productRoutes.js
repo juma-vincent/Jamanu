@@ -7,7 +7,7 @@ const Product = mongoose.model('products');
 
 module.exports = (app)=>{
     app.post('/api/new_product', requireLogin, requireAdmin, async (req, res)=>{
-        const { name, category, price,unitType, imageurl } = req.body;
+        const { name, category, price, unitType, imageurl } = req.body;
         
         const product = await new Product({
             name,

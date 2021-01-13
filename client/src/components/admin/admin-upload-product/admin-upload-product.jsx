@@ -12,7 +12,8 @@ class UploadNewProduct extends Component {
         imageurl: '',
         price: 0,
         category: '',
-        unitType: ''
+        unitType: '',
+        uploadText:'Upload'
   
       }   
       
@@ -35,7 +36,7 @@ class UploadNewProduct extends Component {
       }
   
       render() {
-        const { name, imageurl, price, category, unitType } = this.state;        
+        const { name, imageurl, price, category, unitType, uploadText } = this.state;        
         
         
         return(
@@ -94,7 +95,14 @@ class UploadNewProduct extends Component {
                         </select>
                     </label>
   
-                    <CustomButton id='btn' onClick={this.handleSubmit}>Upload</CustomButton>
+                    <span className={`${uploadText ==='Uploading'? 'uploading': null}`}><CustomButton id='btn'  onClick={(event)=>{
+                    this.handleSubmit(event);
+                    this.setState({...this.state, uploadText:'Uploading'});
+                    }}
+                    
+                    >
+                    {uploadText} <span className='spin'></span>
+                    </CustomButton></span>
                 </FormContainer>
   
                 

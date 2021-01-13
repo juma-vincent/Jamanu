@@ -23,7 +23,7 @@ const Header = ({ currentUser, hidden}) => {
           <div className='no-options'>
             <div className='welcome'>
             {currentUser?(
-                <Link to='/dashboard'>Profile</Link>
+                <Link to='/dashboard' style={{color:'green', fontWeight:'bold'}}>My Profile</Link>
               )
               :null
               }

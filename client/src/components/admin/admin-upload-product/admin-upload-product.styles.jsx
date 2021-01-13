@@ -5,7 +5,7 @@ export const FormContainer = styled.div`
     color: rgb(78, 73, 73);
     max-width: 70%;
     margin: 2.5rem auto;    
-    padding: 2.5rem ;    
+    padding: 2rem ;    
     text-align: start;
     display: flex;
     flex-direction: column;    
@@ -56,6 +56,35 @@ export const FormContainer = styled.div`
           color: black;
         }
       }
+
+    .uploading{
+      position: relative;
+
+      .spin{
+          position: absolute;
+          top: 56.5%;
+          right: 53%;
+          display: inline-block;
+          width: 25px;
+          height: 25px;
+          border: 3px dotted rgba(63, 68, 61, 0.678);
+          border-radius: 50%;
+          border-top-color: #0d9213;
+          animation: spin 1s ease-in-out infinite;
+          -webkit-animation: spin 1s ease-in-out infinite;
+          @keyframes spin {
+            to {
+              -webkit-transform: rotate(360deg);
+            }
+          }
+          @-webkit-keyframes spin {
+            to {
+              -webkit-transform: rotate(360deg);
+            }
+          }
+       }
+    }  
+      
     
     
 

@@ -6,13 +6,23 @@ import { Link } from 'react-router-dom';
 
 
 
-const UserDashboard = ({currentUser, history}) => {
+const UserDashboard = ({currentUser}) => {
     return ( 
         <div>
             <h1>User Dashboard</h1>
-            <h3>Welcome {currentUser.name}</h3>
+            <h3>Welcome <span style={{color:'orange'}}>{currentUser.name}</span></h3>
             
-            {currentUser.isAdmin? <Link to='/admin'>Admin Dashboard</Link>: null}
+            {currentUser.isAdmin? 
+            <div style={{ padding:'20px', width: '30%', margin:'5px auto', display:'flex', 
+            justifyContent:'space-around'}}>
+            <Link to='/admin/' style={{padding:'10px', marginBottom:'20px', backgroundColor:'whitesmoke'}}>
+            Admin Dashboard
+            </Link>
+            <Link to='/' style={{padding:'10px', marginBottom:'20px', backgroundColor:'whitesmoke'}}>
+            Purchase history
+            </Link>
+            </div>
+            : null}
         </div>
      );
 }
