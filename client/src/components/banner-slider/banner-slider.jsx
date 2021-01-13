@@ -40,14 +40,12 @@ const BannerSlider = ({autoPlay}) => {
       },[])
 
     const goLeft= ()=>{
-        x === 0? setX(-100*(bannerData.length -1)) : setX(x+100);
+        x === 0? setX(-100*(bannerData.length -1)) : setX(x+100);        
         
-        console.log(x)
     }
 
     const goRight= ()=>{
-        (x === -100*(bannerData.length -1))? setX(0) : setX(x-100);
-        console.log(x)
+        (x === -100*(bannerData.length -1))? setX(0) : setX(x-100);        
     }
 
     return (
