@@ -11,16 +11,18 @@ const UserDashboard = ({currentUser}) => {
         <div>
             <h1>User Dashboard</h1>
             <h3>Welcome <span style={{color:'orange'}}>{currentUser.name}</span></h3>
+            <div style={{marginBottom:'20px'}}>
+                <Link to='/' style={{padding:'10px', marginBottom:'20px', backgroundColor:'whitesmoke'}}>
+                Purchase history
+                </Link>
+             </div>
             
             {currentUser.isAdmin? 
             <div style={{ padding:'20px', width: '30%', margin:'5px auto', display:'flex', 
             justifyContent:'space-around'}}>
             <Link to='/admin/' style={{padding:'10px', marginBottom:'20px', backgroundColor:'whitesmoke'}}>
             Admin Dashboard
-            </Link>
-            <Link to='/' style={{padding:'10px', marginBottom:'20px', backgroundColor:'whitesmoke'}}>
-            Purchase history
-            </Link>
+            </Link>            
             </div>
             : null}
         </div>

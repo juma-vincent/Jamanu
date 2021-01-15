@@ -1,12 +1,15 @@
 .cart-dropdown {
   position: absolute;
-  width: 265px;
-  height: 340px;
+  width: 275px;
+  height: 360px;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border: 1px solid rgb(189, 189, 179);
+  border-top:  0.5px solid rgb(189, 189, 179);
+  border-right: 0.5px solid rgb(189, 189, 179);
   background-color: rgb(247, 247, 241);
+  box-shadow: -1px 3px 5px rgba(63, 46, 46, 0.2);
+  border-radius: 2px;
   top: 90px;
   right: 17px;
   z-index: 5;
@@ -20,8 +23,12 @@
 
   #button {
     margin-top: auto;
-    font-size: 13px;
+    font-size: 12px;
     font-family: Yu Gothic UI;
+
+    @media screen and (max-width: 800px) {
+      font-size: 10px;
+    }
   }
 
   .empty-message {
@@ -31,5 +38,6 @@
 
   @media screen and (max-width: 800px) {
     width: 240px;
+    margin-right: -5px;
   }
 }

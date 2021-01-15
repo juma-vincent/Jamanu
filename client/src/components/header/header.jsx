@@ -7,7 +7,9 @@ import CartDropdown from "../cart-dropdown/cart-dropdown";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
-import { ReactComponent as GoogleIcon } from "../../assets/icons/google.svg";
+import GoogleOption from "../google-signin-option/google-signin-option";
+import Option from "../option/option";
+
 
 
 const Header = ({ currentUser, hidden}) => {  
@@ -16,7 +18,9 @@ const Header = ({ currentUser, hidden}) => {
         
     <div className="header">
       <Link to="/" className="logo-container">
-        {/* <img src="/images/logo.png" alt="" className="logo" /> */} <h5>Jamanu Food Lover's Market</h5>
+        {/* <img src="/images/logo.png" alt="" className="logo" /> */} 
+        <div style={{fontSize: '16px', paddingTop: '15px', fontWeight: 'bolder',color:'brown'}} id='logo-text'>
+          Jamanu Food Lover's Market</div>
       </Link>
       
       <div className='sub-header'> 
@@ -37,34 +41,25 @@ const Header = ({ currentUser, hidden}) => {
           </div>
 
           <div className="options">
-            <Link to="/" className="option">
-              Home
+            <Link to="/" >
+             <Option text='Home'/>              
             </Link>
-            <Link to="/shop" className="option shop">
-              Shop
+            <Link to="/shop">
+            <Option text='Shop'/> 
             </Link>
             {currentUser ? (
-              <a  href="/api/logout" className="option " >
-                Signout
+              <a  href="/api/logout" >
+               <Option text='Signout'/> 
               </a>
             ) : (
-              <>
-                {" "}
-                {
-                  <a href={`/auth/google`} className='google' >
-                  <div  className='btn-icon-container'>                    
-                    <GoogleIcon className='icon'/>
-                     <span className='button-text' >Sign in with Google</span> 
-                                       
-                   
-                  </div>
-                  </a>
-                  
-                }
+              <>               
+                
+                  <GoogleOption text='Sign in with Google'/>                 
+                
               </>
             )}
 
-            <CartIcon className="option" />
+            <CartIcon className="option cart-icon" />
           </div>
       </div>
       {hidden ? null : <CartDropdown />}

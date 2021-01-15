@@ -24,13 +24,13 @@ const ProductItem = ({ item, addItem }) => {
           {perunit}
         </div>
       </div>
-      <CustomButton  style={ btnText==='Added to cart' ? 
+      <CustomButton style={ btnText==='Added to cart' ? 
        { backgroundColor:'rgb(39, 209, 39)', border: 'rgb(39, 209, 39)'} : 
        null} inverted onClick={() => {
         addItem(item) ;
         setBtnText('Added to cart')
         }}>
-        {btnText} {btnText==='Added to cart' ?   <img src={checkmark} alt=""/>: null }
+        <span id='btn-text'>{btnText}</span>{btnText==='Added to cart' ?   <img src={checkmark} alt=""/>: null }
       </CustomButton>
     </div>
   );
