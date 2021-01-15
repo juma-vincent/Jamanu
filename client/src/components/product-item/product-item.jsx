@@ -20,8 +20,7 @@ const ProductItem = ({ item, addItem }) => {
       <div className="product-footer">
         <div className="name">{name}</div>
         <div className="price">
-          KES {price}
-          {unitType}
+          KES {price}  {unitType}
         </div>
       </div>
       <CustomButton style={ btnText==='Added to cart' ? 
