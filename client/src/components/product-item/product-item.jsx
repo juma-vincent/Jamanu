@@ -8,7 +8,7 @@ import checkmark from '../../assets/icons/checkmark.svg';
 
 
 const ProductItem = ({ item, addItem }) => {
-  const { name, price, perunit, imageurl } = item;
+  const { name, price, unitType, imageurl } = item;
   const [btnText, setBtnText] = useState('Add to cart')
 
   return (
@@ -21,7 +21,7 @@ const ProductItem = ({ item, addItem }) => {
         <div className="name">{name}</div>
         <div className="price">
           KES {price}
-          {perunit}
+          {unitType}
         </div>
       </div>
       <CustomButton style={ btnText==='Added to cart' ? 
