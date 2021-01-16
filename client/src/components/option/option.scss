@@ -1,29 +1,31 @@
 .option {
-        border: none;
+        border: transparent solid 1px ;
         background-color: transparent;
         padding: 0 4px;
         font-size: 18px;
+        color: white;
         // border-bottom: black solid 1.2px;
         border-radius: 3px;        
         font-weight: 500;
         margin: 0 5px;
         
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.5s;
 
         &:hover {
         color: rgb(192, 144, 81);
         animation: pulsate 1s;
-        padding: 10px;
-        // border-top: solid 2px rgb(192, 144, 81);
+        padding: 6px;
+        border-color: rgb(192, 144, 81);
         }
 
         &:focus {
         outline: none;
         // animation: pulsate 1s;
+        border-color: rgb(192, 144, 81);
         color: rgb(240, 143, 17);
-        box-shadow: 0 5px 10px rgba(134, 106, 106, 0.25);
-        padding: 3px;
+        // box-shadow: 0 5px 10px rgba(134, 106, 106, 0.25);
+        padding: 6px;
         }
 
         @media screen and (max-width: 800px) {                            
@@ -40,7 +42,7 @@
             }
     
             50% {
-            transform: scale(1.05);
+            transform: scale(1.1);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
             }
     

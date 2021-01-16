@@ -2,24 +2,36 @@
 .header {
   display: flex;
   justify-content: space-between;
-  height: 100px;
+  height: 100px; 
+  background-color: rgb(83, 1, 1);
   // margin-bottom: 10px;
 
       .logo-container {
-        height: 100px;
-        width: 30%;
-        padding: 0;
-        .logo {
-          height: 120px;
-          font-size: 37px;
-                   
+        height: 90px;
+        width: 15%;
+        padding-top: 10px;
+        // border: black solid 1px;
+        display: flex;
+        justify-content: center;
 
-          @media screen and (max-width: 800px) {
-            height: 100px;
-            width: 30%;
-          }
-        }
-        
+            .logo {
+              width: 50%;
+              height: 90px;
+              align-self: center;
+              border-radius: 50%;
+              border:rgb(83, 1, 1);
+              // font-size: 37px;
+                      
+
+              @media screen and (max-width: 800px) {
+                height: 80px;
+                width: 70%;
+              }
+            }
+      @media screen and (max-width: 800px) {
+        height: 80px;
+        width: 30%;
+      }  
         
       }
 
@@ -35,7 +47,7 @@
                   justify-content: flex-end;
 
                   .welcome {
-                    margin-right: 89px;
+                    margin-right: 129px;
                     // background-color: rgb(205, 120, 50);
                     color: rgb(32, 190, 58);
                     @media screen and (max-width: 800px) {
@@ -70,6 +82,7 @@
         @media screen and (max-width: 800px) {
           //subheader
         }
+        
       }
 
    box-shadow: 0px 2px 3px rgba(63, 46, 46, 0.2);

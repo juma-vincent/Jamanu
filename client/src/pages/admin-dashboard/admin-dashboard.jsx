@@ -13,7 +13,9 @@ import AdminUploadedProducts from "../../components/admin/admin-uploaded-product
     return ( 
   <div>
     
-  <h2>Welcome Admin <span style={{color:'orange'}}>{currentUser.name}</span></h2>
+  <h2>Welcome Admin <span style={{color:'orange'}}>{currentUser.name}</span> 
+     <span> you have <span style={{color:'orange'}}>{currentUser.uploadedProducts}</span> uploads</span>
+  </h2>
   <div style={{display:'flex',justifyContent:"space-around",width:'50%',margin:'auto',padding:'20px'}}>
   <Link to='/admin/new_product' style={{backgroundColor:'whitesmoke',padding:'10px'}}>Add new product</Link><br/>
   <Link to='/admin/products' style={{backgroundColor:'whitesmoke',padding:'10px'}}>View upload history</Link><br/>

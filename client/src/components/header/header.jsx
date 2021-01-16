@@ -18,9 +18,7 @@ const Header = ({ currentUser, hidden}) => {
         
     <div className="header">
       <Link to="/" className="logo-container">
-        {/* <img src="/images/logo.png" alt="" className="logo" /> */} 
-        <div style={{fontSize: '16px', paddingTop: '15px', fontWeight: 'bolder',color:'brown'}} id='logo-text'>
-          Jamanu Food Lover's Market</div>
+        <img src="/images/jamanu-logo.jpg" alt="" className="logo" />         
       </Link>
       
       <div className='sub-header'> 
@@ -28,7 +26,7 @@ const Header = ({ currentUser, hidden}) => {
             <div className='welcome'>
             {currentUser?(
                 <div style={{display:'flex', alignItems:'center'}}>
-                  <Link to='/dashboard' style={{color:'green', fontWeight:'bold'}}>{currentUser.name}
+                  <Link to='/dashboard' style={{color:'rgb(145, 255, 19)', fontWeight:'bold'}}>{currentUser.name}
                     <img width='30'height='30' src={currentUser.imageurl}
                     style={{borderRadius:'50%', marginTop:'5px',marginBottom:'-9px', marginLeft:'5px'  }} alt=""/>
                   </Link>
