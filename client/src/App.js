@@ -12,9 +12,10 @@ import Footer from "./components/footer/footer";
 import ShopPage from "./pages/shop-page/shop-page"
 import { fetchUser } from "./redux/user/user.actions";
 
-import UserDashboard from "./components/user-dashboard/user-dashboard";
+import UserDashboard from "./components//user/user-dashboard/user-dashboard";
 import Spinner from "./components/spinner/spinner";
 import AdminDashboard from "./pages/admin-dashboard/admin-dashboard";
+import UserOrders from "./components/user/user-orders/user-orders";
 
 
 
@@ -63,6 +64,12 @@ class App extends Component {
                       path="/dashboard"
                       render={() => (currentUser ? <UserDashboard/> : <Redirect to="/"  />)}
                       />
+                      <Route
+                      exact
+                      path="/user/orders"
+                      render={() => (currentUser ? <UserOrders/> : <Redirect to="/"  />)}
+                      />
+                      
                    
 
                   </Switch>

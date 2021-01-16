@@ -7,7 +7,8 @@ const UserSchema = new Schema({
     email: String,
     imageurl:String,
     isAdmin:{type: Boolean, default: false} ,
-    uploadedProducts: {type: Number, default: 0} 
+    uploadedProducts: {type: Number, default: 0}, 
+    ordersMade: {type: Number, default: 0}
 });
 
 mongoose.model('users', UserSchema);

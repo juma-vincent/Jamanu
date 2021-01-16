@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 require('./models/User');
 require('./models/Product');
 require('./models/Category');
+require('./models/Order');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
@@ -26,6 +27,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/productRoutes')(app);
+require('./routes/orderRoutes')(app);
 
 
 if(process.env.NODE_ENV === 'production'){

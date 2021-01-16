@@ -19,7 +19,7 @@ class AdminUploadedProducts extends React.Component {
         <h2>Upload History</h2>
         {this.state.products.reverse().filter((product, index)=> index<10).map((product)=> 
           
-          <div className='admin-uploaded-products'  key={product.id} > 
+          <div className='admin-uploaded-products'  key={product._id} > 
             <div>Name: <span style={{fontWeight: 'bold', color:'orange'}}>{product.name} </span></div> 
              <div>Category: <span style={{fontWeight: 'bold', color:'orange'}}>{product.category}</span></div>
              <div>Date created: <span style={{fontWeight: 'bold', color:'orange'}}>

@@ -22,7 +22,19 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
     dispatch({type: UserActionTypes.FETCH_USER, payload: res.data});
     history.push('/admin/products');
     
-}    
+}   
+
+export const makePayment = ({mobileNumber,cartItems, total}, history)=>
+    async dispatch =>{
+        const res = await axios.post(`/api/new_order`, {
+            mobileNumber,
+            cartItems,
+            total});
+         console.log(res.data);
+        dispatch({type:UserActionTypes.FETCH_USER, payload:res.data})
+        history.push('/user/orders');
+    }
+
 
 
         
