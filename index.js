@@ -9,6 +9,7 @@ require('./models/Product');
 require('./models/Category');
 require('./models/Order');
 require('./services/passport');
+const request = require('request');
 
 mongoose.connect(keys.mongoURI);
 const app = express();
@@ -40,6 +41,34 @@ app.get('*', (req, res)=>{
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
 })
 }
+
+
+app.get('/', (req, res)=>{
+    res.send('Working Juma John')
+})
+
+app.get('/access_token', (req, res)=>{
+    //access token
+    const url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+    const auth = new Buffer("yVSMTgATzEpWGARxkkHXRxsGAyWqOqu2" + ":" + "GTqE7aY3y6xczh6X").toString('base64');
+
+    request({
+                url:url,
+                headers: {
+                            "Authorization": "Basic" + auth
+
+                         }
+           }, 
+           (error, response, body)=>{
+               if(error){
+                   console.log(error)
+               }else{
+                   res.status(200).json(body)
+               }
+
+           }
+    )
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
