@@ -19,12 +19,21 @@ module.exports = (app)=>{
         console.log(req.body.Body.stkCallback) ; 
         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
         console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----MpesaReceiptNumber----') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.MpesaReceiptNumber) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------TransactionDate') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.TransactionDate) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PhoneNumber') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.PhoneNumber) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------Amount') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Amount) ; 
+
 
         const updateOrder= ()=>{
-            return res.body.Body
+            return res.body.Body.stkCallback.CallbackMetadata.MpesaReceiptNumber
         }
-        res.redirect('/dashboard'); 
-        logger.debug('Calling MPESA RESPONSE'); 
+        
+        
         
            
       
