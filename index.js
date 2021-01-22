@@ -10,6 +10,9 @@ require('./models/Category');
 require('./models/Order');
 require('./services/passport');
 const request = require('request');
+const getMpesaOauthToken = require('./middlewares/getMpesaOauthToken');
+const makeMpesaRequest = require('./services/mpesa');
+
 
 mongoose.connect(keys.mongoURI);
 const app = express();
@@ -43,31 +46,27 @@ app.get('*', (req, res)=>{
 }
 
 
-app.get('/', (req, res)=>{
-    res.send('Working Juma John')
+
+app.get('/access_token', getMpesaOauthToken, (req, res)=>{
+    res.send(req.token)
+    
 })
 
-app.get('/access_token', (req, res)=>{
-    //access token
-    const url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
-    const auth = new Buffer("yVSMTgATzEpWGARxkkHXRxsGAyWqOqu2" + ":" + "GTqE7aY3y6xczh6X").toString('base64');
 
-    request({
-                url:url,
-                headers: {
-                            "Authorization": "Basic" + auth
 
-                         }
-           }, 
-           (error, response, body)=>{
-               if(error){
-                   console.log(error)
-               }else{
-                   res.status(200).json(body)
-               }
+app.get('/stk', getMpesaOauthToken, (req, res)=>{
+    const endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
+    auth = "Bearer " + req.access_token;  
+    makeMpesaRequest(auth, endpoint,res);
+    
+    
+ 
+})
 
-           }
-    )
+app.post('/stk_callback', (req, res)=>{
+    console.log('-----------------STK-----------------')
+    console.log(req.body)
+    res.send(req.body)
 })
 
 const PORT = process.env.PORT || 5000;
