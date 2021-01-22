@@ -115,17 +115,7 @@ module.exports = (app)=>{
        
     })
 
-    app.post('/api/stk_callback',  (req, res)=>{
-        console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata) ;
-                
-        (req, res)=>{
-            res.redirect('/dashboard');        
-           }
-           
-        
-    })
-
+    
     app.get('/api/admin/all_orders', requireLogin, requireAdmin, async (req, res)=>{
         const allOrders = await Order.find({});
         res.send(allOrders); 

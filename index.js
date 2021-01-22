@@ -9,13 +9,19 @@ require('./models/Product');
 require('./models/Category');
 require('./models/Order');
 require('./services/passport');
-const request = require('request');
+
+const pino = require('pino');
+const expressPino = require('express-pino-logger');
+const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
+const expressLogger = expressPino({ logger });
+
 const getMpesaOauthToken = require('./middlewares/getMpesaOauthToken');
 const makeMpesaRequest = require('./services/mpesa');
 
 
 mongoose.connect(keys.mongoURI);
 const app = express();
+app.use(expressLogger);
 app.use(bodyParser.json());
 
 
@@ -47,21 +53,18 @@ app.get('*', (req, res)=>{
 
 
 
-app.get('/access_token', getMpesaOauthToken, (req, res)=>{
-    res.send(req.token)
+app.post('/api/stk_callback',  (req, res)=>{
+    console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
+    console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+    logger.debug('Calling MPESA RESPONSE');      
+    
+    res.redirect('/dashboard');        
+      
+       
     
 })
 
 
-
-app.get('/stk', getMpesaOauthToken, (req, res)=>{
-    const endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-    auth = "Bearer " + req.access_token;  
-    makeMpesaRequest(auth, endpoint,res);
-    
-    
- 
-})
 
 app.post('/stk_callback', (req, res)=>{
     console.log('-----------------STK-----------------')
