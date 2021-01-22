@@ -13,7 +13,7 @@ const ProductsPreview = ({ title, items }) => {
         {items
           .filter((item, index) => index < 4)
           .map((item) => (
-            <ProductItem key={item.id} item={item} />
+            <ProductItem key={item._id} item={item} />
           ))}
       </div>
     </div>

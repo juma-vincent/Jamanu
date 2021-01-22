@@ -31,8 +31,8 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
             cartItems,
             total});
          console.log(res.data);
-        dispatch({type:UserActionTypes.FETCH_USER, payload:res.data})
-        history.push('/user/orders');
+        // dispatch({type:UserActionTypes.FETCH_USER, payload:res.data})
+        // history.push('/user/orders');
     }
 
 

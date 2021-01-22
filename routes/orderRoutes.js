@@ -7,11 +7,15 @@ const request = require('request');
 
 
 const Order = mongoose.model('orders');
+const User = mongoose.model('users');
 
 
 module.exports = (app)=>{
 
-    app.post('/api/stk_callback',  (req, res)=>{
+    app.post('/api/stk_callback', async (req, res)=>{
+
+        const user = await User.findOne({ phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value });
+        console.log(user)
         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
         console.log('------------------Body--------------') 
         console.log(req.body.Body) ; 
@@ -30,10 +34,13 @@ module.exports = (app)=>{
         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
 
+        // req.body.Body.ResultCode;
+        // req.body.Body.ResultDesc;
 
-        const updateOrder= ()=>{
-            return res.body.Body.stkCallback.CallbackMetadata.MpesaReceiptNumber
-        }
+        res.send({})
+        
+
+       
         
         
         
@@ -44,22 +51,32 @@ module.exports = (app)=>{
 })   
 
     app.post('/api/new_order', requireLogin, getMpesaOauthToken, async(req, res)=>{
-       const { cartItems, total, mobileNumber } = req.body;
+       const { cartItems, total, mobileNumber } = req.body;       
 
-       const order = new Order({
-         transactionId: 'TRANSACTIONID',
-         amount: total,
-         products: cartItems,
-         created: Date.now(),
-         contact: mobileNumber,
-         _user: req.user.id
+       const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
+        const refinedNumber = '2547'+ lastEight;
+
+        const user = await User.updateOne({
+            _id: req.user.id
+        },
+        {
+            $set : { phoneNumber: refinedNumber}
+
+        })
+
+    //    const order = new Order({
+    //      transactionId: 'TRANSACTIONID',
+    //      amount: total,
+    //      products: cartItems,
+    //      created: Date.now(),
+    //      contact: refinedNumber,
+    //      _user: req.user.id
 
 
-       });
+    //    });
 
        
-        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
-        const refinedNumber = '2547'+ lastEight;
+        
 
          //Process MPESA transaction, if successful, proceed           
          
@@ -90,10 +107,11 @@ module.exports = (app)=>{
         let valid = (new Date(timestamp)).getTime() > 0;
         console.log(valid)
         const password = new Buffer.from("174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp).toString('base64')
-    
+        console.log("--------===================USER ===NEW ===========mobileNumber")
+        
         // console.log("Password", password)
        
-         request(
+        return request(
                     {
                         url: endpoint,
                         method: "POST",
@@ -127,34 +145,28 @@ module.exports = (app)=>{
                         
                     }
                 )
-    const ord = updateOrder()
-    if(ord){
-        await order.save();
-        req.user.ordersMade +=1;
-        const user = await req.user.save();
-        res.send(user)
-    }
+        
+    // const result = updateOrder()
+    // if(result){
+    //     console.log('===================PAYMENT =====SUCCESSFULL==========')
+    //     console.log('===================RESULT IS ==========')
+    //     console.log(result)       
+
+        
+    //     console.log('===================PAYMENT =====SUCCESSFULL==========')
+    //     console.log('===================PAYMENT =====SUCCESSFULL==========')
+    //     console.log('===================RESULT FIRST ITEM ===============')
+    //     console.log(result.stkCallback.CallbackMetadata.Item[1].Value)
+        // await order.save();
+        // req.user.ordersMade +=1;
+        // const user = await req.user.save();
+        // res.send(user)
+    // }
                
         // ----------------------------------------------------------------MPESA API
 
 
-//      app.post('/api/stk_callback',  (req, res)=>{
-//         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
-//         console.log('------------------Body--------------') 
-//         console.log(req.body.Body) ; 
-//         console.log('------------Body DOT -----STKCALLBACK') 
-//         console.log(req.body.Body.stkCallback) ; 
-//         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
-//         console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
-//         res.redirect('/dashboard'); 
-//         logger.debug('Calling MPESA RESPONSE');      
-        
-           
-      
-       
-    
-// })   
-        
+
         
 
         
