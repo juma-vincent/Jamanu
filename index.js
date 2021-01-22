@@ -54,11 +54,12 @@ app.get('*', (req, res)=>{
 
 
 app.post('/api/stk_callback',  (req, res)=>{
-    console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
-    console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+    // console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
+    // console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+    res.redirect('/dashboard'); 
     logger.debug('Calling MPESA RESPONSE');      
     
-    res.redirect('/dashboard');        
+           
       
        
     
