@@ -11,6 +11,27 @@ const Order = mongoose.model('orders');
 
 module.exports = (app)=>{
 
+    app.post('/api/stk_callback',  (req, res)=>{
+        console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
+        console.log('------------------Body--------------') 
+        console.log(req.body.Body) ; 
+        console.log('------------Body DOT -----STKCALLBACK') 
+        console.log(req.body.Body.stkCallback) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+
+        const updateOrder= ()=>{
+            return res.body.Body
+        }
+        res.redirect('/dashboard'); 
+        logger.debug('Calling MPESA RESPONSE'); 
+        
+           
+      
+       
+    
+})   
+
     app.post('/api/new_order', requireLogin, getMpesaOauthToken, async(req, res)=>{
        const { cartItems, total, mobileNumber } = req.body;
 
@@ -61,7 +82,7 @@ module.exports = (app)=>{
     
         // console.log("Password", password)
        
-        return  request(
+         request(
                     {
                         url: endpoint,
                         method: "POST",
@@ -89,18 +110,39 @@ module.exports = (app)=>{
                             console.log(error)
                         }
                         
-                        await order.save();
-                        req.user.ordersMade +=1;
-                        const user = await req.user.save();
-                        console.log(body)
-                        res.send(user);  
+                        
+                        
+                        res.send(body);  
                         
                     }
                 )
+    const ord = updateOrder()
+    if(ord){
+        await order.save();
+        req.user.ordersMade +=1;
+        const user = await req.user.save();
+        res.send(user)
+    }
+               
         // ----------------------------------------------------------------MPESA API
 
 
+//      app.post('/api/stk_callback',  (req, res)=>{
+//         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
+//         console.log('------------------Body--------------') 
+//         console.log(req.body.Body) ; 
+//         console.log('------------Body DOT -----STKCALLBACK') 
+//         console.log(req.body.Body.stkCallback) ; 
+//         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
+//         console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+//         res.redirect('/dashboard'); 
+//         logger.debug('Calling MPESA RESPONSE');      
         
+           
+      
+       
+    
+// })   
         
         
 
@@ -114,6 +156,8 @@ module.exports = (app)=>{
 
        
     })
+
+    
 
     
     app.get('/api/admin/all_orders', requireLogin, requireAdmin, async (req, res)=>{

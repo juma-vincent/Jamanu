@@ -53,25 +53,15 @@ app.get('*', (req, res)=>{
 
 
 
-app.post('/api/stk_callback',  (req, res)=>{
-    console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
-    console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
-    res.redirect('/dashboard'); 
-    logger.debug('Calling MPESA RESPONSE');      
-    
-           
-      
-       
-    
-})
 
 
 
-app.post('/stk_callback', (req, res)=>{
-    console.log('-----------------STK-----------------')
-    console.log(req.body)
-    res.send(req.body)
-})
+
+// app.post('/stk_callback', (req, res)=>{
+//     console.log('-----------------STK-----------------')
+//     console.log(req.body)
+//     res.send(req.body)
+// })
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
