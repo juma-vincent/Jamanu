@@ -10,10 +10,6 @@ require('./models/Category');
 require('./models/Order');
 require('./services/passport');
 
-const pino = require('pino');
-const expressPino = require('express-pino-logger');
-const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
-const expressLogger = expressPino({ logger });
 
 const getMpesaOauthToken = require('./middlewares/getMpesaOauthToken');
 const makeMpesaRequest = require('./services/mpesa');
@@ -21,7 +17,7 @@ const makeMpesaRequest = require('./services/mpesa');
 
 mongoose.connect(keys.mongoURI);
 const app = express();
-app.use(expressLogger);
+
 app.use(bodyParser.json());
 
 
