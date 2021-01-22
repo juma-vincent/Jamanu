@@ -115,7 +115,7 @@ module.exports = (app)=>{
        
     })
 
-    app.get('/api/stk_callback',  (req, res)=>{
+    app.post('/api/stk_callback',  (req, res)=>{
         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
         console.log(req.body.Body.stkCallback.CallbackMetadata) ;
         res.send(req.body.Body.stkCallback.CallbackMetadata);
