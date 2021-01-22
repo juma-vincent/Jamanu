@@ -21,14 +21,14 @@ module.exports = (app)=>{
         console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----ITEM----') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item) ;
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------ITEM1') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0]) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------ITEM2') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1]) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------ITEM3') 
-        console.log(req.body.Body.stkCallback.CallbackMetadataItem[2]) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------ITEM4') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3]) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------Amount') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0].Value) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------MpesaReceiptNumber') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1].Value) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------DATE TRANS') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
 
 
         const updateOrder= ()=>{
