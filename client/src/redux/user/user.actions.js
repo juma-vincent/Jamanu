@@ -24,7 +24,7 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
     
 }   
 
-const checkOrderUpdate = ({user}) =>
+const checkOrderUpdate = (user) =>
 async dispatch=>{
     console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE-----');
     console.log(user);
@@ -48,7 +48,7 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
         total
         });
         console.log('------USER OBJECT FROM ORDER FIRST PROCESSING, NOT COMPLETED------');        
-        checkOrderUpdate(res.data);
+        dispatch(checkOrderUpdate(res.data))
         console.log(res.data);
         history.push('/user/orders');
     }
