@@ -25,8 +25,13 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
 }   
 
 export const makePayment = ({mobileNumber,cartItems, total}, history)=>
+
+    
     async dispatch =>{
-        const res = await axios.post(`/api/new_order`, {
+         console.log('---------MOBILE NUMBER---------------',mobileNumber);
+         console.log('-----------TOTAL==========',total)
+         console.log('===========CART====ITEMS========',cartItems)
+         const res = await axios.post(`/api/new_order`, {
             mobileNumber,
             cartItems,
             total});
