@@ -26,25 +26,25 @@ module.exports = (app)=>{
         const user = User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})                    
         console.log('FOUND USER ID ----WITH MOBILE======', user._id)
         
-        console.log('UPDATED USER  ----WITH 15 MORE ORDERS======', user)
+        console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
         console.log('------------------Body--------------') 
         console.log(req.body.Body) ; 
         console.log('------------Body DOT -----STKCALLBACK') 
         console.log(req.body.Body.stkCallback) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----ITEM----') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item) ;
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------Amount') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------MpesaReceiptNumber') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------DATE TRANS') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
-        console.log('-------------REQUEST USER OBJECT-----------',req.user);
+        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
+        // console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----ITEM----') 
+        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item) ;
+        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------Amount') 
+        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0].Value) ; 
+        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------MpesaReceiptNumber') 
+        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1].Value) ; 
+        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------DATE TRANS') 
+        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
+        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
+        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
+        // console.log('-------------REQUEST USER OBJECT-----------',req.user);
 
         // req.body.Body.ResultCode;
         // req.body.Body.ResultDesc;
