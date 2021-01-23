@@ -56,13 +56,13 @@ module.exports = (app)=>{
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
         const refinedNumber = '2547'+ lastEight;
 
-        // const user = await User.updateOne({
-        //     _id: req.user.id
-        // },
-        // {
-        //     $set : { phoneNumber: refinedNumber}
+        const user = await User.updateOne({
+            _id: req.user.id
+        },
+        {
+            $set : { phoneNumber: refinedNumber}
 
-        // })
+        })
 
     //    const order = new Order({
     //      transactionId: 'TRANSACTIONID',
@@ -88,7 +88,7 @@ module.exports = (app)=>{
         auth = "Bearer " + access_token; 
         let datenow = new Date();        
                  
-        const year = datenow.getFullYear().toString();
+        // const year = datenow.getFullYear().toString();
         let addedmonth = datenow.getMonth()+1 //months starts from 0 in Javascript
         const stringmonth = (addedmonth < 10 ? '0' : '') + (addedmonth.toString()); 
         // Since months in Javascript are in array form, so January is returned as 0, and we add 0 as a string
@@ -96,12 +96,13 @@ module.exports = (app)=>{
         // If the current month+ 1 is more than 10, we add empty string ''.
         // We then append the string value of the month +1         
     
-        const day = datenow.getDate().toString();
-        const hours = datenow.getHours().toString();
-        const minutes = datenow.getMinutes().toString();
-        const seconds = datenow.getSeconds().toString()
+        // const day = datenow.getDate().toString();
+        // const hours = datenow.getHours().toString();
+        // const minutes = datenow.getMinutes().toString();
+        // const seconds = datenow.getSeconds().toString()
     
-        const timestamp = year + stringmonth + day + hours + minutes + "00"                
+        // const rawtimestamp = year + stringmonth + day + hours + minutes + "00"    
+        const timestamp = datenow.getFullYear().toString() + stringmonth +  datenow.getDate().toString() + datenow.getHours().toString() + datenow.getMinutes().toString() + datenow.getSeconds().toString()        
     
         console.log("Timestamp", timestamp);
         let valid = (new Date(timestamp)).getTime() > 0;
@@ -111,7 +112,7 @@ module.exports = (app)=>{
         
         // console.log("Password", password)
        
-        return request(
+        request(
                     {
                         url: endpoint,
                         method: "POST",
@@ -145,7 +146,7 @@ module.exports = (app)=>{
                         
                     }
                 )
-        
+        res.send(user) ;   
     // const result = updateOrder()
     // if(result){
     //     console.log('===================PAYMENT =====SUCCESSFULL==========')
