@@ -140,44 +140,44 @@ module.exports = (app)=>{
         
         // console.log("Password", password)
 
-
+        res.send(user);  
 
        
        
-        request(
-                    {
-                        url: endpoint,
-                        method: "POST",
-                        headers: {
-                            "Authorization": auth
-                        },
-                        json: {
-                            "BusinessShortCode": "174379 ",
-                            "Password": password,
-                            "Timestamp": timestamp,
-                            "TransactionType": "CustomerPayBillOnline",
-                            "Amount": total,
-                            "PartyA": refinedNumber,
-                            "PartyB": "174379 ",
-                            "PhoneNumber": refinedNumber,
-                            "CallBackURL": "https://jamanu.herokuapp.com/api/stk_callback",
-                            "AccountReference": refinedNumber,
-                            "TransactionDesc": "Payment "
-                        }
+        // request(
+        //             {
+        //                 url: endpoint,
+        //                 method: "POST",
+        //                 headers: {
+        //                     "Authorization": auth
+        //                 },
+        //                 json: {
+        //                     "BusinessShortCode": "174379 ",
+        //                     "Password": password,
+        //                     "Timestamp": timestamp,
+        //                     "TransactionType": "CustomerPayBillOnline",
+        //                     "Amount": total,
+        //                     "PartyA": refinedNumber,
+        //                     "PartyB": "174379 ",
+        //                     "PhoneNumber": refinedNumber,
+        //                     "CallBackURL": "https://jamanu.herokuapp.com/api/stk_callback",
+        //                     "AccountReference": refinedNumber,
+        //                     "TransactionDesc": "Payment "
+        //                 }
                         
     
-                    },
-                     (error, response, body) =>{
-                        if(error){
-                            console.log(error);
-                            res.status(400).send(error)
+        //             },
+        //              (error, response, body) =>{
+        //                 if(error){
+        //                     console.log(error);
+        //                     res.status(400).send(error)
                             
-                        }                  
+        //                 }                  
                                                  
-                        res.send(user);  
+        //                 res.send(user);  
                         
-                    }
-                )
+        //             }
+        //         )
          
     // const result = updateOrder()
     // if(result){
@@ -231,7 +231,7 @@ module.exports = (app)=>{
         res.send(orders);
     });
     
-   app.post('/api/check_order_update', requireLogin,  (req, res)=>{
+   app.post('/api/check_order_update', (req, res)=>{
        const { user } = req.body;
        console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
        console.log(user)
