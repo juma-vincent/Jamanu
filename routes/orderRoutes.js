@@ -233,14 +233,26 @@ module.exports = (app)=>{
     
    app.post('/api/check_order_update', (req, res)=>{       
        const { user } = req.body;
-       res.send(user)
+       
        console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
        console.log(user)
+
+       async function getOrderUpdate() {
+        const foundUser = await User.findOne({_id: user.id})
+        if(foundUser.ordersMade===user.ordersMade){
+          res.send(foundUser)  
+           
+         }
+
+        
+      }
+      
+      setTimeout(getOrderUpdate(), 5000);
 
     //    let timerId = setInterval(async () =>{
 
     //         const foundUser = await User.findOne({_id: user.id})
-    //         if(foundUser.ordersMade>user.ordersMade){
+    //         if(foundUser.ordersMade===user.ordersMade){
     //             console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
     //             console.log(foundUser)
     //             res.send(foundUser)

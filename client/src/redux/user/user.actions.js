@@ -28,7 +28,7 @@ const checkOrderUpdate = (user) =>
 
     async dispatch=>{  
     console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
-    console.log(res.data);    
+    console.log(user);    
     const res = await axios.post(`/api/check_order_update`, {
      user: user
     })
