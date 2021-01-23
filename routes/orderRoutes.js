@@ -56,13 +56,13 @@ module.exports = (app)=>{
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
         const refinedNumber = '2547'+ lastEight;
 
-        const user = await User.updateOne({
-            _id: req.user.id
-        },
-        {
-            $set : { phoneNumber: refinedNumber}
+        // const user = await User.updateOne({
+        //     _id: req.user.id
+        // },
+        // {
+        //     $set : { phoneNumber: refinedNumber}
 
-        })
+        // })
 
     //    const order = new Order({
     //      transactionId: 'TRANSACTIONID',
