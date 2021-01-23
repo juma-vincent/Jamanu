@@ -160,7 +160,7 @@ module.exports = (app)=>{
                             "PartyA": refinedNumber,
                             "PartyB": "174379 ",
                             "PhoneNumber": refinedNumber,
-                            "CallBackURL": "https://jamanu.herokuapp.com/stk_callback",
+                            "CallBackURL": "https://jamanu.herokuapp.com/api/stk_callback",
                             "AccountReference": refinedNumber,
                             "TransactionDesc": "Payment "
                         }
@@ -233,6 +233,8 @@ module.exports = (app)=>{
     
    app.post('/api/check_order_update', requireLogin,  (req, res)=>{
        const { user } = req.body;
+       console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
+       console.log(user)
 
        let timerId = setInterval(async () =>{
 
