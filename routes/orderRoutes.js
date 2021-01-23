@@ -128,7 +128,7 @@ module.exports = (app)=>{
                             "PartyB": "174379 ",
                             "PhoneNumber": refinedNumber,
                             "CallBackURL": "https://jamanu.herokuapp.com/api/stk_callback",
-                            "AccountReference": "0712062516 ",
+                            "AccountReference": refinedNumber,
                             "TransactionDesc": "Payment "
                         }
                         
