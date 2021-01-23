@@ -96,13 +96,13 @@ module.exports = (app)=>{
         // If the current month+ 1 is more than 10, we add empty string ''.
         // We then append the string value of the month +1         
     
-        // const day = datenow.getDate().toString();
-        // const hours = datenow.getHours().toString();
-        // const minutes = datenow.getMinutes().toString();
-        // const seconds = datenow.getSeconds().toString()
+        const day = datenow.getDate().toString();
+        const hours = datenow.getHours().toString();
+        const minutes = datenow.getMinutes().toString();
+        const seconds = datenow.getSeconds().toString()
     
-        // const rawtimestamp = year + stringmonth + day + hours + minutes + "00"    
-        const timestamp = datenow.getFullYear().toString() + stringmonth +  datenow.getDate().toString() + datenow.getHours().toString() + datenow.getMinutes().toString() + datenow.getSeconds().toString()        
+        const timestamp = `${year} + ${stringmonth} + ${day} + ${hours} + ${minutes} + ${seconds}`    
+              
     
         console.log("Timestamp", timestamp);
         let valid = (new Date(timestamp)).getTime() > 0;
