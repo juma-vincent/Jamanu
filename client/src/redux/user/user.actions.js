@@ -26,9 +26,13 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
 
 const checkOrderUpdate = (user) =>
 async dispatch=>{
+    console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------');
+    console.log(user);
     const res = await axios.post('/api/check_order_update',{
      user
     })
+    console.log('------USER OBJECT AFTER SENDING ORDER UPDATE------');
+    console.log(res.data);
     dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
 }
 
