@@ -15,7 +15,9 @@ module.exports = (app)=>{
     app.post('/api/stk_callback', async (req, res)=>{
 
         const user = await User.findOne({ phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value });
-        console.log(user)
+        console.log('FOUND USER ID ----WITH MOBILE======', user._id)
+        user.ordersMade += 15;
+        console.log('UPDATED USER  ----WITH 15 MORE ORDERS======', user)
         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
         console.log('------------------Body--------------') 
         console.log(req.body.Body) ; 
@@ -33,12 +35,14 @@ module.exports = (app)=>{
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
+        console.log('-------------REQUEST USER OBJECT-----------',req.user);
 
         // req.body.Body.ResultCode;
         // req.body.Body.ResultDesc;
 
         // res.send({})        
-        res.redirect(307, '/api/new_order');
+        // res.redirect(307, '/api/new_order');
+        res.redirect('/dashboard')
         
         
 
@@ -52,12 +56,7 @@ module.exports = (app)=>{
     
 })   
 
-    app.post('/api/new_order',  getMpesaOauthToken, async(req, res)=>{
-        if(req.body.Body){
-            console.log('====MPESA==REDIRECT===BODY======', req.body.Body)
-            return
-        }
-
+    app.post('/api/new_order', requireLogin, getMpesaOauthToken, async(req, res)=>{
        const { cartItems, total, mobileNumber } = req.body;       
 
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
@@ -69,7 +68,7 @@ module.exports = (app)=>{
         {
             $set : { phoneNumber: refinedNumber}
 
-        })
+        }).exec()
 
     //    const order = new Order({
     //      transactionId: 'TRANSACTIONID',
