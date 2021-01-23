@@ -134,7 +134,7 @@ module.exports = (app)=>{
                         
     
                     },
-                    async (error, response, body) =>{
+                     (error, response, body) =>{
                         if(error){
                             console.log(error)
                         }
