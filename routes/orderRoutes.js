@@ -231,26 +231,27 @@ module.exports = (app)=>{
         res.send(orders);
     });
     
-   app.post('/api/check_order_update', (req, res)=>{
+   app.post('/api/check_order_update', (req, res)=>{       
        const { user } = req.body;
+       res.send(user)
        console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
        console.log(user)
 
-       let timerId = setInterval(async () =>{
+    //    let timerId = setInterval(async () =>{
 
-            const foundUser = await User.findOne({_id: user.id})
-            if(foundUser.ordersMade>user.ordersMade){
-                console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
-                console.log(foundUser)
-                res.send(foundUser)
-            }
-            console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+    //         const foundUser = await User.findOne({_id: user.id})
+    //         if(foundUser.ordersMade>user.ordersMade){
+    //             console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+    //             console.log(foundUser)
+    //             res.send(foundUser)
+    //         }
+    //         console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
 
-       }, 10000);
+    //    }, 10000);
 
-        // after 50 seconds stop
-        setTimeout(() =>  clearInterval(timerId)  , 50000);
-        res.json({ "error":"Time out"})
+    //     // after 50 seconds stop
+    //     setTimeout(() =>  clearInterval(timerId)  , 50000);
+    //     res.json({ "error":"Time out"})
 
         
         

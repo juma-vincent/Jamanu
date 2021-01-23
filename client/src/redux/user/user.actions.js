@@ -25,16 +25,17 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
 }   
 
 const checkOrderUpdate = (user) =>
-async dispatch=>{
-    console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE-----');
-    console.log(user);
-    const res = await axios.post(`/api/check_order_update`,{
-     user
+
+    async dispatch=>{  
+    console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
+    console.log(res.data);    
+    const res = await axios.post(`/api/check_order_update`, {
+     user: user
     })
     console.log('------USER OBJECT AFTER SENDING ORDER UPDATE------');
     console.log(res.data);
     dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
-}
+   }
 
 
 
@@ -47,9 +48,10 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
         cartItems,
         total
         });
-        console.log('------USER OBJECT FROM ORDER FIRST PROCESSING, NOT COMPLETED------');        
+        console.log('------USER OBJECT FROM ORDER FIRST PROCESSING, NOT COMPLETED------'); 
+        console.log(res.data);       
         dispatch(checkOrderUpdate(res.data))
-        console.log(res.data);
+        
         history.push('/user/orders');
     }
 
