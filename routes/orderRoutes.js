@@ -96,23 +96,42 @@ module.exports = (app)=>{
         // If the current month+ 1 is more than 10, we add empty string ''.
         // We then append the string value of the month +1         
     
-        const day = datenow.getDate().toString();
-        const hours = datenow.getHours().toString();
-        const minutes = datenow.getMinutes().toString();
-        const seconds = datenow.getSeconds().toString()
+        // const day = datenow.getDate().toString();
+        // const hours = datenow.getHours().toString();
+        // const minutes = datenow.getMinutes().toString();
+        // const seconds = datenow.getSeconds().toString()
     
-        // const timestamp = `${year} + ${stringmonth} + ${day} + ${hours} + ${minutes} + ${seconds}`
-        const timestamp = '20210123121434'
-
-              
+        // const rawtimestamp = year + stringmonth + day + hours + minutes + "00"    
+        // const timestamp = datenow.getFullYear().toString() + datenow.getMonth() +  datenow.getDate().toString() + datenow.getHours().toString() + datenow.getMinutes().toString() +  datenow.getSeconds().toString()       
     
-        console.log("Timestamp", timestamp);
-        let valid = (new Date(timestamp)).getTime() > 0;
-        console.log(valid)
-        const password = new Buffer.from("174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp).toString('base64')
-        console.log("--------===================USER ===NEW ===========mobileNumber")
+        // console.log("Timestamp", timestamp);
+        // let valid = (new Date(timestamp)).getTime() > 0;
+        // console.log(valid)
+        // const password = new Buffer.from("174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp).toString('base64')
+        // console.log("--------===================USER ===NEW ===========mobileNumber")
         
         // console.log("Password", password)
+// =====================================================
+        // Date.prototype.yyyymmdd = function() {
+        //     var mm = this.getMonth() + 1; // getMonth() is zero-based
+        //     var dd = this.getDate();
+          
+        //     return [this.getFullYear(),
+        //             (mm>9 ? '' : '0') + mm,
+        //             (dd>9 ? '' : '0') + dd
+        //            ].join('');
+        //   };
+          
+        //   var date = new Date();
+        //   date.yyyymmdd();
+        //   =======================
+
+
+
+        let d = new Date();
+        d = new Date(d.getTime() - 3000000);
+        var timestamp = d.getFullYear().toString()+""+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+""+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+""+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+""+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+"00";
+        console.log("REFINED TIMESTAMP =======", timestamp);
        
         request(
                     {
