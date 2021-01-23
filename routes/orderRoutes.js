@@ -156,10 +156,12 @@ module.exports = (app)=>{
                     },
                      (error, response, body) =>{
                         if(error){
-                            console.log(error)
+                            console.log(error);
+                            res.status(400).send(error)
+                            
                         }                        
                         
-                        
+                        res.redirect('/user/orders')
                         // res.send(body);  
                         
                     }
