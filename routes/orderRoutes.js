@@ -23,7 +23,7 @@ module.exports = (app)=>{
             
         ).exec();
 
-        const user = User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})                    
+        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})                    
         console.log('FOUND USER ID ----WITH MOBILE======', user._id)
         
         console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
