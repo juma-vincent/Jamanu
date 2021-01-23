@@ -2,7 +2,6 @@ const requireLogin = require("../middlewares/requireLogin");
 const mongoose = require('mongoose');
 const requireAdmin = require("../middlewares/requireAdmin");
 const getMpesaOauthToken = require("../middlewares/getMpesaOauthToken");
-const makeMpesaRequest = require('../services/mpesa');
 const request = require('request');
 
 
@@ -14,9 +13,19 @@ module.exports = (app)=>{
 
     app.post('/api/stk_callback', async (req, res)=>{
 
-        const user = await User.findOne({ phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value });
+        await User.updateOne({ 
+                                phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value 
+                            },
+                            {
+                                $inc : { ordersMade: 1}
+                            }
+
+            
+        ).exec();
+
+        const user = User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})                    
         console.log('FOUND USER ID ----WITH MOBILE======', user._id)
-        user.ordersMade += 15;
+        
         console.log('UPDATED USER  ----WITH 15 MORE ORDERS======', user)
         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
         console.log('------------------Body--------------') 
@@ -40,9 +49,9 @@ module.exports = (app)=>{
         // req.body.Body.ResultCode;
         // req.body.Body.ResultDesc;
 
-        // res.send({})        
+        res.status(200).send('Success');       
         // res.redirect(307, '/api/new_order');
-        res.redirect('/dashboard')
+        
         
         
 
@@ -62,13 +71,16 @@ module.exports = (app)=>{
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
         const refinedNumber = '2547'+ lastEight;
 
-        const user = await User.updateOne({
+        await User.updateOne({
             _id: req.user.id
         },
         {
             $set : { phoneNumber: refinedNumber}
 
         }).exec()
+
+        const user = await User.findOne({_id: req.user.id})
+        
 
     //    const order = new Order({
     //      transactionId: 'TRANSACTIONID',
@@ -81,6 +93,7 @@ module.exports = (app)=>{
 
     //    });
 
+    
        
         
 
@@ -147,7 +160,7 @@ module.exports = (app)=>{
                             "PartyA": refinedNumber,
                             "PartyB": "174379 ",
                             "PhoneNumber": refinedNumber,
-                            "CallBackURL": "https://jamanu.herokuapp.com/api/stk_callback",
+                            "CallBackURL": "https://jamanu.herokuapp.com/stk_callback",
                             "AccountReference": refinedNumber,
                             "TransactionDesc": "Payment "
                         }
@@ -159,10 +172,9 @@ module.exports = (app)=>{
                             console.log(error);
                             res.status(400).send(error)
                             
-                        }                        
-                        
-                        res.redirect('/user/orders')
-                        // res.send(body);  
+                        }                  
+                                                 
+                        res.send(user);  
                         
                     }
                 )
@@ -219,7 +231,29 @@ module.exports = (app)=>{
         res.send(orders);
     });
     
+   app.post('/api/check_order_update', requireLogin,  (req, res)=>{
+       const { user } = req.body;
 
+       let timerId = setInterval(async () =>{
+
+            const foundUser = await User.findOne({_id: user.id})
+            if(foundUser.ordersMade>user.ordersMade){
+                console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+                console.log(foundUser)
+                res.send(foundUser)
+            }
+            console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+
+       }, 10000);
+
+        // after 50 seconds stop
+        setTimeout(() =>  clearInterval(timerId)  , 50000);
+        res.json({ "error":"Time out"})
+
+        
+        
+
+   })
 
 
 }

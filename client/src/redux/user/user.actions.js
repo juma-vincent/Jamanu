@@ -24,19 +24,27 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
     
 }   
 
+const checkOrderUpdate = (user) =>
+async dispatch=>{
+    const res = await axios.post('/api/check_order_update',{
+     user
+    })
+    dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
+}
+
+
+
 export const makePayment = ({mobileNumber,cartItems, total}, history)=>
 
     
-    async dispatch =>{
-         console.log('---------MOBILE NUMBER---------------',mobileNumber);
-         console.log('-----------TOTAL==========',total)
-         console.log('===========CART====ITEMS========',cartItems)
+    async dispatch =>{         
          const res = await axios.post(`/api/new_order`, {
             mobileNumber,
             cartItems,
             total});
-         console.log(res.data);
-        dispatch({type:UserActionTypes.FETCH_USER, payload:res.data})
+        console.log('------USER OBJECT FROM ORDER FIRST PROCESSING, NOT COMPLETED------');
+        console.log(res.data);
+        checkOrderUpdate(res.data);
         history.push('/user/orders');
     }
 
