@@ -274,7 +274,7 @@ module.exports = (app)=>{
        }, 10000);
 
         // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 60000);
+        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 40000);
         
 
         
