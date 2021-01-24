@@ -44,7 +44,7 @@ const checkOrderUpdate = ({user}, history) => (dispatch)=>{
         
         
 
-    }, 10000);
+    }, 5000);
         
         // after 50 seconds stop
         setTimeout(() => { clearInterval(timerId); history.push('/payment_failure'); } , 60000);
