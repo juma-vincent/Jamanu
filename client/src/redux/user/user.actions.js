@@ -79,7 +79,7 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
         console.log(res.data); 
         const user= res.data;     
         
-        dispatch(checkOrderUpdate({user}, history)) ; 
+        // dispatch(checkOrderUpdate({user}, history)) ; 
         
         history.push('/payment_pending');
     }
