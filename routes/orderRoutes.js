@@ -24,7 +24,31 @@ module.exports = (app)=>{
         ).exec();
 
         const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})                    
-        console.log('FOUND USER ID ----WITH MOBILE======', user._id)
+        
+        const cartItems = user.cartItems;    
+
+         //Create a new order and save it to the db                   
+        await new Order({
+            transactionId: req.body.Body.stkCallback.CallbackMetadata.Item[1].Value,
+            amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value,
+            products: cartItems,
+            created: Date.now(),
+            contact: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value,
+            _user: user._id
+
+        }).save()
+
+        //clear the cart from the user after successful order
+        await User.updateOne({ 
+                              _id: user._id 
+                              },
+                            {
+                                $set : { cartItems: []}
+                            }
+
+
+        ).exec();
+
         
         console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
@@ -71,36 +95,20 @@ module.exports = (app)=>{
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
         const refinedNumber = '2547'+ lastEight;
 
+        //We are setting the req.user's db's phone no. as the one entered in the client form
         await User.updateOne({
             _id: req.user.id
         },
         {
-            $set : { phoneNumber: refinedNumber}
+            $set : { phoneNumber: refinedNumber},
+            $set : { cartItems: cartItems}
 
         }).exec()
 
-        const user = await User.findOne({_id: req.user.id})
-        
-        
-    //    const order = new Order({
-    //      transactionId: 'TRANSACTIONID',
-    //      amount: total,
-    //      products: cartItems,
-    //      created: Date.now(),
-    //      contact: refinedNumber,
-    //      _user: req.user.id
-
-
-    //    });
-
-    
-       
-        
-
-         //Process MPESA transaction, if successful, proceed           
+        const user = await User.findOne({_id: req.user.id})                
          
         const access_token = req.access_token
-        // const mpesaReponse =  makeMpesaRequest(auth, access_token,refinedNumber);
+        
 
         // ----------------------------------------------------------------MPESA API
         const endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
