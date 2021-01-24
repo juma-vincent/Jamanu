@@ -12,6 +12,7 @@ const User = mongoose.model('users');
 module.exports = (app)=>{
 
     app.post('/api/stk_callback', async (req, res)=>{
+        console.log("==========STK ====CALLBACK IS HERE ");
 
         await User.updateOne({ 
                                 phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value 
@@ -242,7 +243,7 @@ module.exports = (app)=>{
     });
     
    app.post('/api/check_order_update', async (req, res)=>{    
-          
+    req.setTimeout(500000);
        const { user } = req.body;
        
        console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
@@ -288,7 +289,7 @@ module.exports = (app)=>{
        }, 5000);
 
         // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 50000);
+        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 70000);
         
 
         
