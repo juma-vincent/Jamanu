@@ -60,5 +60,5 @@ app.get('*', (req, res)=>{
 // })
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT);
-server.timeout = 230000;
+const server = app.listen(PORT);
+server.timeout = 240000;
