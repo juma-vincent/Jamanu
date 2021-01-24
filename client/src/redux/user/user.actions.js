@@ -24,32 +24,32 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
     
 }   
 
-const checkOrderUpdate = ({user}, history) => (dispatch)=>{
-    let timerId = setInterval(async () =>{
+// const checkOrderUpdate = ({user}, history) => (dispatch)=>{
+//     let timerId = setInterval(async () =>{
     
-                        console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
-                        console.log(user);    
-                        const res = await axios.post(`/api/check_order_update`, {
-                        user: user
-                        })
-                        if(res.data._id){
-                            console.log('------USER OBJECT AFTER SUCCESSFUL PURCHASE------');
-                            console.log(res.data);
-                            dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
-                            history.push('/payment_success')
-                        }else{
-                            console.log('------TIME OUT ERROR------');
-                            // history.push('/payment_failure')
-                        }
+//                         console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
+//                         console.log(user);    
+//                         const res = await axios.post(`/api/check_order_update`, {
+//                         user: user
+//                         })
+//                         if(res.data._id){
+//                             console.log('------USER OBJECT AFTER SUCCESSFUL PURCHASE------');
+//                             console.log(res.data);
+//                             dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
+//                             history.push('/payment_success')
+//                         }else{
+//                             console.log('------TIME OUT ERROR------');
+//                             // history.push('/payment_failure')
+//                         }
         
         
 
-    }, 5000);
+//     }, 5000);
         
-        // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); history.push('/payment_failure'); } , 60000);
+//         // after 50 seconds stop
+//         setTimeout(() => { clearInterval(timerId); history.push('/payment_failure'); } , 60000);
 
-}
+// }
 
 
 
