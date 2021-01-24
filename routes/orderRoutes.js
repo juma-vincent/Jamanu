@@ -81,7 +81,7 @@ module.exports = (app)=>{
 
         const user = await User.findOne({_id: req.user.id})
         
-        res.send(user)
+        
     //    const order = new Order({
     //      transactionId: 'TRANSACTIONID',
     //      amount: total,
@@ -144,40 +144,40 @@ module.exports = (app)=>{
 
        
        
-        // request(
-        //             {
-        //                 url: endpoint,
-        //                 method: "POST",
-        //                 headers: {
-        //                     "Authorization": auth
-        //                 },
-        //                 json: {
-        //                     "BusinessShortCode": "174379 ",
-        //                     "Password": password,
-        //                     "Timestamp": timestamp,
-        //                     "TransactionType": "CustomerPayBillOnline",
-        //                     "Amount": total,
-        //                     "PartyA": refinedNumber,
-        //                     "PartyB": "174379 ",
-        //                     "PhoneNumber": refinedNumber,
-        //                     "CallBackURL": "https://jamanu.herokuapp.com/api/stk_callback",
-        //                     "AccountReference": refinedNumber,
-        //                     "TransactionDesc": "Payment "
-        //                 }
+        request(
+                    {
+                        url: endpoint,
+                        method: "POST",
+                        headers: {
+                            "Authorization": auth
+                        },
+                        json: {
+                            "BusinessShortCode": "174379 ",
+                            "Password": password,
+                            "Timestamp": timestamp,
+                            "TransactionType": "CustomerPayBillOnline",
+                            "Amount": total,
+                            "PartyA": refinedNumber,
+                            "PartyB": "174379 ",
+                            "PhoneNumber": refinedNumber,
+                            "CallBackURL": "https://jamanu.herokuapp.com/api/stk_callback",
+                            "AccountReference": refinedNumber,
+                            "TransactionDesc": "Payment "
+                        }
                         
     
-        //             },
-        //              (error, response, body) =>{
-        //                 if(error){
-        //                     console.log(error);
-        //                     res.status(400).send(error)
+                    },
+                     (error, response, body) =>{
+                        if(error){
+                            console.log(error);
+                            res.status(400).send(error)
                             
-        //                 }                  
+                        }                  
                                                  
-        //                 res.send(user);  
+                        res.send(user);  
                         
-        //             }
-        //         )
+                    }
+                )
          
     // const result = updateOrder()
     // if(result){
