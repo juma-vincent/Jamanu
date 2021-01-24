@@ -57,8 +57,9 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
         });
         console.log('------USER OBJECT FROM ORDER FIRST PROCESSING, NOT COMPLETED------'); 
         console.log(res.data); 
-        const user= res.data;      
-        dispatch(checkOrderUpdate({user}, history))
+        const user= res.data;     
+        
+        setTimeout(dispatch(checkOrderUpdate({user}, history)), 25000 );
         
         history.push('/payment_pending');
     }

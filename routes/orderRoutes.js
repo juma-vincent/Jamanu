@@ -271,10 +271,10 @@ module.exports = (app)=>{
             // }
             // console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
 
-       }, 10000);
+       }, 5000);
 
         // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 40000);
+        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 20000);
         
 
         
