@@ -26,21 +26,34 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
 
 const checkOrderUpdate = ({user}, history) =>
 
+
+
+
     async dispatch=>{  
-    console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
-    console.log(user);    
-    const res = await axios.post(`/api/check_order_update`, {
-     user: user
-    })
-    if(res.data._id){
-        console.log('------USER OBJECT AFTER SENDING ORDER UPDATE------');
-        console.log(res.data);
-        dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
-        history.push('/payment_success')
-    }else{
-        console.log('------TIME OUT ERROR------');
-        history.push('/payment_failure')
-    }
+        let timerId = setInterval(async () =>{
+    
+            console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
+            console.log(user);    
+            const res = await axios.post(`/api/check_order_update`, {
+            user: user
+            })
+            if(res.data._id){
+                console.log('------USER OBJECT AFTER SENDING ORDER UPDATE------');
+                console.log(res.data);
+                dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
+                history.push('/payment_success')
+            }else{
+                console.log('------TIME OUT ERROR------');
+                // history.push('/payment_failure')
+            }
+        
+        
+        
+        }, 10000);
+        
+        // after 50 seconds stop
+        setTimeout(() => { clearInterval(timerId); history.push('/payment_failure') ; } , 60000);
+    
     
    }
 
@@ -59,7 +72,7 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
         console.log(res.data); 
         const user= res.data;     
         
-        setTimeout(()=>dispatch(checkOrderUpdate({user}, history)), 30000 );
+        dispatch(checkOrderUpdate({user}, history))
         
         history.push('/payment_pending');
     }
