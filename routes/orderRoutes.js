@@ -238,32 +238,44 @@ module.exports = (app)=>{
        console.log(user)
 
        async function getOrderUpdate() {
-        const foundUser = await User.findOne({_id: user.id})
-        if(foundUser.ordersMade===user.ordersMade){
+        const foundUser = await User.findOne({_id: user._id}).exec()
+        console.log('======FOUNNNNND ------USERRRRRRRRR');
+        console.log(foundUser)
+        console.log('======FOUNNNNND ------USERRRRRRRRRS ORDERS MADE-----')
+        console.log(foundUser.ordersMade)
+        if(foundUser.ordersMade > user.ordersMade){
+            console.log('======FOUNNNNND ===AN ORDER INCREMENT, HENCE SUCCESSFUL ORDER')
+            
           res.send(foundUser)  
            
+         }else{
+            console.log('=NO=====FOUNNNNND == ORDER INCREMENT, HENCE NO ORDER YET')
+
          }
+         
 
         
       }
       
-      setTimeout(getOrderUpdate(), 5000);
+    //   setTimeout(getOrderUpdate, 10000);
+      
 
-    //    let timerId = setInterval(async () =>{
+       let timerId = setInterval(async () =>{
+           getOrderUpdate()
 
-    //         const foundUser = await User.findOne({_id: user.id})
-    //         if(foundUser.ordersMade===user.ordersMade){
-    //             console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
-    //             console.log(foundUser)
-    //             res.send(foundUser)
-    //         }
-    //         console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+            // const foundUser = await User.findOne({_id: user.id})
+            // if(foundUser.ordersMade===user.ordersMade){
+            //     console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+            //     console.log(foundUser)
+            //     res.send(foundUser)
+            // }
+            // console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
 
-    //    }, 10000);
+       }, 5000);
 
-    //     // after 50 seconds stop
-    //     setTimeout(() =>  clearInterval(timerId)  , 50000);
-    //     res.json({ "error":"Time out"})
+        // after 50 seconds stop
+        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 60000);
+        
 
         
         

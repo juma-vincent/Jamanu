@@ -16,6 +16,9 @@ import UserDashboard from "./components//user/user-dashboard/user-dashboard";
 import Spinner from "./components/spinner/spinner";
 import AdminDashboard from "./pages/admin-dashboard/admin-dashboard";
 import UserOrders from "./components/user/user-orders/user-orders";
+import PaymentPending from "./pages/payment-feedback/payment-pending/payment-pending";
+import PaymentSuccess from "./pages/payment-feedback/payment-success/payment-success";
+import PaymentFailure from "./pages/payment-feedback/payment-failure/payment-failure";
 
 
 
@@ -53,7 +56,10 @@ class App extends Component {
                    
                       <Route exact path="/" component={Homepage} />
                       <Route path="/shop" component={ShopPage} />
-                      <Route exact path="/checkout" component={CheckoutPage} />    
+                      <Route exact path="/checkout" component={CheckoutPage} />
+                      <Route exact path="/payment_pending" component={PaymentPending} />
+                      <Route exact path="/payment_success" component={PaymentSuccess} /> 
+                      <Route exact path="/payment_failure" component={PaymentFailure} />   
                                           
                       <Route                      
                       path="/admin"
