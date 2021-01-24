@@ -31,6 +31,22 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+const apiTimeout = 70 * 1000;
+app.use((req, res, next) => {
+    // Set the timeout for all HTTP requests
+    req.setTimeout(apiTimeout, () => {
+        let err = new Error('Request Timeout');
+        err.status = 408;
+        next(err);
+    });
+    // Set the server response timeout for all HTTP requests
+    res.setTimeout(apiTimeout, () => {
+        let err = new Error('Service Unavailable');
+        err.status = 503;
+        next(err);
+    });
+});
+
 require('./routes/authRoutes')(app);
 require('./routes/productRoutes')(app);
 require('./routes/orderRoutes')(app);
@@ -60,5 +76,5 @@ app.get('*', (req, res)=>{
 // })
 
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT);
-server.setTimeout(240000);
+app.listen(PORT);
+
