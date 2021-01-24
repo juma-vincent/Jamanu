@@ -105,11 +105,13 @@ module.exports = (app)=>{
 
         }).exec()
 
+        
+
         const user = await User.findOne({_id: req.user.id})                
          
         const access_token = req.access_token
         
-
+       
         // ----------------------------------------------------------------MPESA API
         const endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
         auth = "Bearer " + access_token; 
@@ -239,13 +241,13 @@ module.exports = (app)=>{
         res.send(orders);
     });
     
-   app.post('/api/check_order_update', (req, res)=>{       
+   app.post('/api/check_order_update', async (req, res)=>{       
        const { user } = req.body;
        
        console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
        console.log(user)
 
-       async function getOrderUpdate() {
+       
         const foundUser = await User.findOne({_id: user._id}).exec()
         console.log('======FOUNNNNND ------USERRRRRRRRR');
         console.log(foundUser)
@@ -258,31 +260,32 @@ module.exports = (app)=>{
            
          }else{
             console.log('=NO=====FOUNNNNND == ORDER INCREMENT, HENCE NO ORDER YET')
+            res.send({"error":"Unable to process payment"})
 
          }
          
 
         
-      }
+     
       
     //   setTimeout(getOrderUpdate, 10000);
       
 
-       let timerId = setInterval(async () =>{
-           getOrderUpdate()
+    //    let timerId = setInterval(async () =>{
+    //        getOrderUpdate()
 
-            // const foundUser = await User.findOne({_id: user.id})
-            // if(foundUser.ordersMade===user.ordersMade){
-            //     console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
-            //     console.log(foundUser)
-            //     res.send(foundUser)
-            // }
-            // console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+    //         // const foundUser = await User.findOne({_id: user.id})
+    //         // if(foundUser.ordersMade===user.ordersMade){
+    //         //     console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+    //         //     console.log(foundUser)
+    //         //     res.send(foundUser)
+    //         // }
+    //         // console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
 
-       }, 5000);
+    //    }, 5000);
 
-        // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 20000);
+    //     // after 50 seconds stop
+    //     setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 20000);
         
 
         
