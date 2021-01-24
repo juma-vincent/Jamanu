@@ -24,7 +24,7 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
     
 }  
 
-const checkOrderUpdate= (user)=> async dispatch=>{
+const checkOrderUpdate= ({user},history)=> async dispatch=>{
     console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
     console.log(user);    
     const res = await axios.post(`/api/check_order_update`, {
@@ -49,7 +49,7 @@ const checkOrderUpdate= (user)=> async dispatch=>{
 const precheckOrderUpdate = ({user}, history) => dispatch=>{
     let timerId = setInterval(async () =>{    
             
-        dispatch(checkOrderUpdate(user))
+        dispatch(checkOrderUpdate({user},history))
         
         }, 10000);
         
@@ -58,13 +58,7 @@ const precheckOrderUpdate = ({user}, history) => dispatch=>{
 }
 
     
-
-
-
-
-
-
-     
+    
         
     
     
