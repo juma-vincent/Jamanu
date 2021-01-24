@@ -108,7 +108,7 @@ module.exports = (app)=>{
         
 
         const user = await User.findOne({_id: req.user.id})                
-         
+        
         const access_token = req.access_token
         
         
@@ -241,28 +241,31 @@ module.exports = (app)=>{
         res.send(orders);
     });
     
-   app.post('/api/check_order_update', async (req, res)=>{       
+   app.post('/api/check_order_update', async (req, res)=>{    
+        req.setTimeout(80000);   
        const { user } = req.body;
        
        console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
        console.log(user)
 
        
-        const foundUser = await User.findOne({_id: user._id}).exec()
-        console.log('======FOUNNNNND ------USERRRRRRRRR');
-        console.log(foundUser)
-        console.log('======FOUNNNNND ------USERRRRRRRRRS ORDERS MADE-----')
-        console.log(foundUser.ordersMade)
-        if(foundUser.ordersMade > user.ordersMade){
-            console.log('======FOUNNNNND ===AN ORDER INCREMENT, HENCE SUCCESSFUL ORDER')
+        const getOrderUpdate = async ()=>{
+            const foundUser = await User.findOne({_id: user._id}).exec()
+            console.log('======FOUNNNNND ------USERRRRRRRRR');
+            console.log(foundUser)
+            console.log('======FOUNNNNND ------USERRRRRRRRRS ORDERS MADE-----')
+            console.log(foundUser.ordersMade)
+            if(foundUser.ordersMade > user.ordersMade){
+                console.log('======FOUNNNNND ===AN ORDER INCREMENT, HENCE SUCCESSFUL ORDER')
+                
+            res.send(foundUser)  
             
-          res.send(foundUser)  
-           
-         }else{
-            console.log('=NO=====FOUNNNNND == ORDER INCREMENT, HENCE NO ORDER YET')
-            res.send({"error":"Unable to process payment"})
+            }else{
+                console.log('=NO=====FOUNNNNND == ORDER INCREMENT, HENCE NO ORDER YET')
+                // res.send({"error":"Unable to process payment"})
 
-         }
+            }
+        }
          
 
         
@@ -271,21 +274,21 @@ module.exports = (app)=>{
     //   setTimeout(getOrderUpdate, 10000);
       
 
-    //    let timerId = setInterval(async () =>{
-    //        getOrderUpdate()
+       let timerId = setInterval(async () =>{
+           getOrderUpdate()
 
-    //         // const foundUser = await User.findOne({_id: user.id})
-    //         // if(foundUser.ordersMade===user.ordersMade){
-    //         //     console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
-    //         //     console.log(foundUser)
-    //         //     res.send(foundUser)
-    //         // }
-    //         // console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+            // const foundUser = await User.findOne({_id: user.id})
+            // if(foundUser.ordersMade===user.ordersMade){
+            //     console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
+            //     console.log(foundUser)
+            //     res.send(foundUser)
+            // }
+            // console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
 
-    //    }, 5000);
+       }, 5000);
 
-    //     // after 50 seconds stop
-    //     setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 20000);
+        // after 50 seconds stop
+        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 70000);
         
 
         

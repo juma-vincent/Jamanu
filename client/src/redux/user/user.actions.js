@@ -37,7 +37,7 @@ const checkOrderUpdate= ({user},history)=> async dispatch=>{
         history.push('/payment_success')
     }else{
         console.log('------TIME OUT ERROR------');
-        // history.push('/payment_failure')
+        history.push('/payment_failure')
     }
 }
     
@@ -46,16 +46,7 @@ const checkOrderUpdate= ({user},history)=> async dispatch=>{
 
 
 
-const precheckOrderUpdate = ({user}, history) => dispatch=>{
-    let timerId = setInterval(async () =>{    
-            
-        dispatch(checkOrderUpdate({user},history))
-        
-        }, 20000);
-        
-        // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); history.push('/payment_failure') ; } , 100000);
-}
+
 
     
     
@@ -79,7 +70,7 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
         console.log(res.data); 
         const user= res.data;     
         
-        dispatch(precheckOrderUpdate({user}, history))
+        dispatch(checkOrderUpdate({user}, history))
         
         history.push('/payment_pending');
     }
