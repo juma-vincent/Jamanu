@@ -26,9 +26,9 @@ module.exports = (app)=>{
         console.log("==========+ 'I am here' ");
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value + 'I am here');
         console.log("===TOSTRING=======+ 'I am here' ");
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].ValuetoString() + 'I am here');
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() + 'I am here');
         console.log("===BODY.NUMBER=======+ 10");
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].ValuetoString() + 10);
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() + 10);
         
 
         
