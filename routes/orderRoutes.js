@@ -24,8 +24,9 @@ module.exports = (app)=>{
             
         ).exec();
 
-        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})                    
-        
+        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})  
+        console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
+        console.log(user)
         // const cartItems = user.cartItems;    
 
         //  //Create a new order and save it to the db                   
@@ -40,15 +41,15 @@ module.exports = (app)=>{
         // }).save()
 
         //clear the cart from the user after successful order
-        await User.updateOne({ 
-                              _id: user._id 
-                              },
-                            {
-                                $set : { cartItems: []}
-                            }
+        // await User.updateOne({ 
+        //                       _id: user._id 
+        //                       },
+        //                     {
+        //                         $set : { cartItems: []}
+        //                     }
 
 
-        ).exec();
+        // ).exec();
 
         
         console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
