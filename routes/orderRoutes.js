@@ -84,6 +84,14 @@ module.exports = (app)=>{
         // req.body.Body.ResultCode;
         // req.body.Body.ResultDesc;
 
+        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})  
+        console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
+        console.log(user)
+        console.log('CARTITEMS')
+        const cartItems = user.cartItems; 
+        console.log(cartItems)
+
+
         res.status(200).send('Success');       
         // res.redirect(307, '/api/new_order');
         
