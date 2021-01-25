@@ -50,18 +50,18 @@ module.exports = (app)=>{
         // }).save()
 
         //clear the cart from the user after successful order
-        await User.updateOne({ 
-                              _id: user._id 
-                              },
-                            {
-                                $set : { cartItems: []}
-                            }
+        // await User.updateOne({ 
+        //                       _id: user._id 
+        //                       },
+        //                     {
+        //                         $set : { cartItems: []}
+        //                     }
 
 
-        ).exec();
+        // ).exec();
 
         
-        console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
+        // console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
         console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
         console.log('------------------Body--------------') 
         console.log(req.body.Body) ; 
@@ -79,7 +79,7 @@ module.exports = (app)=>{
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-------ITEM3-PHONE NUMBER') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
-        console.log('-------------REQUEST USER OBJECT CARTITEMS-----------',user.cartItems);
+        // console.log('-------------REQUEST USER OBJECT CARTITEMS-----------',user.cartItems);
 
         // req.body.Body.ResultCode;
         // req.body.Body.ResultDesc;
