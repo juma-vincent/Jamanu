@@ -57,19 +57,19 @@ module.exports = (app)=>{
         console.log(req.body.Body) ; 
         console.log('------------Body DOT -----STKCALLBACK') 
         console.log(req.body.Body.stkCallback) ; 
-        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
-        // console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
-        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----ITEM----') 
-        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item) ;
-        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------Amount') 
-        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0].Value) ; 
-        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------MpesaReceiptNumber') 
-        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1].Value) ; 
-        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------DATE TRANS') 
-        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
-        // console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
-        // console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
-        // console.log('-------------REQUEST USER OBJECT-----------',req.user);
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----ITEM----') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item) ;
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------Amount') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0].Value) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------MpesaReceiptNumber') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1].Value) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------DATE TRANS') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
+        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
+        console.log('-------------REQUEST USER OBJECT CARTITEMS-----------',user.cartItems);
 
         // req.body.Body.ResultCode;
         // req.body.Body.ResultDesc;
@@ -184,7 +184,7 @@ module.exports = (app)=>{
                             res.status(400).send(error)
                             
                         }                  
-                        setTimeout(() =>res.send(user), 20000);                       
+                        res.send(user);                       
                          
                         
                     }
