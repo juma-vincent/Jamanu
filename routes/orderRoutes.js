@@ -184,8 +184,8 @@ module.exports = (app)=>{
                             res.status(400).send(error)
                             
                         }                  
-                                                 
-                        res.send(user);  
+                        setTimeout(() =>res.send(user), 20000);                       
+                         
                         
                     }
                 )
@@ -243,7 +243,7 @@ module.exports = (app)=>{
     });
     
    app.post('/api/check_order_update', async (req, res)=>{    
-    req.setTimeout(500000);
+       req.setTimeout(300000);
        const { user } = req.body;
        
        console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
@@ -289,7 +289,7 @@ module.exports = (app)=>{
        }, 5000);
 
         // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 70000);
+        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 20000);
         
 
         
