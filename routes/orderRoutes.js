@@ -14,15 +14,15 @@ module.exports = (app)=>{
     app.post('/api/stk_callback', async (req, res)=>{
         console.log("==========STK ====CALLBACK IS HERE ");
 
-        // await User.updateOne({ 
-        //                         phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() 
-        //                     },
-        //                     {
-        //                         $inc : { ordersMade: 1}
-        //                     }
+        await User.updateOne({ 
+                                phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() 
+                            },
+                            {
+                                $inc : { ordersMade: 1}
+                            }
 
             
-        // ).exec();
+        ).exec();
         console.log("==========+ 'I am here' ");
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value + 'I am here');
         console.log("===TOSTRING=======+ 'I am here' ");
@@ -33,32 +33,32 @@ module.exports = (app)=>{
 
         
 
-        // const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString()})  
-        // console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
-        // console.log(user)
-        // const cartItems = user.cartItems;    
+        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString()})  
+        console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
+        console.log(user)
+        const cartItems = user.cartItems;    
 
          //Create a new order and save it to the db                   
-        // await new Order({
-        //     transactionId: req.body.Body.stkCallback.CallbackMetadata.Item[1].Value.toString(),
-        //     amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value,
-        //     products: cartItems,
-        //     created: Date.now(),
-        //     contact: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString(),
-        //     _user: user._id
+        await new Order({
+            transactionId: req.body.Body.stkCallback.CallbackMetadata.Item[1].Value.toString(),
+            amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value,
+            products: cartItems,
+            created: Date.now(),
+            contact: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString(),
+            _user: user._id
 
-        // }).save()
+        }).save()
 
         //clear the cart from the user after successful order
-        // await User.updateOne({ 
-        //                       _id: user._id 
-        //                       },
-        //                     {
-        //                         $set : { cartItems: []}
-        //                     }
+        await User.updateOne({ 
+                              _id: user._id 
+                              },
+                            {
+                                $set : { cartItems: []}
+                            }
 
 
-        // ).exec();
+        ).exec();
 
         
         // console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
@@ -84,13 +84,7 @@ module.exports = (app)=>{
         // req.body.Body.ResultCode;
         // req.body.Body.ResultDesc;
 
-        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})  
-        console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
-        console.log(user)
-        console.log('CARTITEMS')
-        const cartItems = user.cartItems; 
-        console.log(cartItems)
-
+        
 
         res.status(200).send('Success');       
         // res.redirect(307, '/api/new_order');
