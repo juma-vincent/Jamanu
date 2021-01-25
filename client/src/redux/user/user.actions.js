@@ -60,7 +60,11 @@ const checkOrderUpdate= ({user},history)=> async dispatch=>{
 export const makePayment = ({mobileNumber,cartItems, total}, history)=>
 
     
-    async dispatch =>{         
+    async dispatch =>{  
+        console.log('------BEFORE SENDING ORDER  mobile num, total------'); 
+        console.log(mobileNumber);     
+        console.log(cartItems);  
+        console.log(total);   
         const res = await axios.post(`/api/new_order`, {
         mobileNumber,
         cartItems,

@@ -126,7 +126,9 @@ module.exports = (app)=>{
 
         
 
-        const user = await User.findOne({_id: req.user.id})                
+        const user = await User.findOne({_id: req.user.id})     
+        console.log('------NEW ORDER  ------PHONE')  
+        console.log(user.phoneNumber)         
         
         const access_token = req.access_token
         
