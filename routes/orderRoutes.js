@@ -24,7 +24,7 @@ module.exports = (app)=>{
             
         ).exec();
 
-        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})  
+        const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString()})  
         console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
         console.log(user)
         // const cartItems = user.cartItems;    
@@ -62,13 +62,13 @@ module.exports = (app)=>{
         console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
         console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----ITEM----') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item) ;
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------Amount') 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA----0----Amount') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------MpesaReceiptNumber') 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----1---MpesaReceiptNumber') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------DATE TRANS') 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-- 2------DATE TRANS') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------PHONE NUMBER') 
+        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-------ITEM3-PHONE NUMBER') 
         console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
         console.log('-------------REQUEST USER OBJECT CARTITEMS-----------',user.cartItems);
 
