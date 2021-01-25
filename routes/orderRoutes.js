@@ -113,22 +113,24 @@ module.exports = (app)=>{
 
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
         const refinedNumber = '2547'+ lastEight;
+        console.log(refinedNumber)
 
         //We are setting the req.user's db's phone no. as the one entered in the client form
         await User.updateOne({
             _id: req.user.id
         },
         {
-            $set : { phoneNumber: refinedNumber},
-            $set : { cartItems: cartItems}
+            $set : { phoneNumber: refinedNumber, cartItems: cartItems},
+            
 
-        }).exec()
+        })
 
         
 
         const user = await User.findOne({_id: req.user.id})     
         console.log('------NEW ORDER  ------PHONE')  
-        console.log(user.phoneNumber)         
+        console.log(user)   
+            
         
         const access_token = req.access_token
         
