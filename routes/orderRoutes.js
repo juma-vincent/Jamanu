@@ -15,7 +15,7 @@ module.exports = (app)=>{
         console.log("==========STK ====CALLBACK IS HERE ");
 
         await User.updateOne({ 
-                                phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value 
+                                phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() 
                             },
                             {
                                 $inc : { ordersMade: 1}
@@ -27,29 +27,29 @@ module.exports = (app)=>{
         const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString()})  
         console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
         console.log(user)
-        // const cartItems = user.cartItems;    
+        const cartItems = user.cartItems;    
 
-        //  //Create a new order and save it to the db                   
-        // await new Order({
-        //     transactionId: req.body.Body.stkCallback.CallbackMetadata.Item[1].Value,
-        //     amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value,
-        //     products: cartItems,
-        //     created: Date.now(),
-        //     contact: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value,
-        //     _user: user._id
+         //Create a new order and save it to the db                   
+        await new Order({
+            transactionId: req.body.Body.stkCallback.CallbackMetadata.Item[1].Value.toString(),
+            amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value,
+            products: cartItems,
+            created: Date.now(),
+            contact: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString(),
+            _user: user._id
 
-        // }).save()
+        }).save()
 
         //clear the cart from the user after successful order
-        // await User.updateOne({ 
-        //                       _id: user._id 
-        //                       },
-        //                     {
-        //                         $set : { cartItems: []}
-        //                     }
+        await User.updateOne({ 
+                              _id: user._id 
+                              },
+                            {
+                                $set : { cartItems: []}
+                            }
 
 
-        // ).exec();
+        ).exec();
 
         
         console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
