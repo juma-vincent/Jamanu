@@ -26,18 +26,18 @@ module.exports = (app)=>{
 
         const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value})                    
         
-        const cartItems = user.cartItems;    
+        // const cartItems = user.cartItems;    
 
-         //Create a new order and save it to the db                   
-        await new Order({
-            transactionId: req.body.Body.stkCallback.CallbackMetadata.Item[1].Value,
-            amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value,
-            products: cartItems,
-            created: Date.now(),
-            contact: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value,
-            _user: user._id
+        //  //Create a new order and save it to the db                   
+        // await new Order({
+        //     transactionId: req.body.Body.stkCallback.CallbackMetadata.Item[1].Value,
+        //     amount: req.body.Body.stkCallback.CallbackMetadata.Item[0].Value,
+        //     products: cartItems,
+        //     created: Date.now(),
+        //     contact: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value,
+        //     _user: user._id
 
-        }).save()
+        // }).save()
 
         //clear the cart from the user after successful order
         await User.updateOne({ 
