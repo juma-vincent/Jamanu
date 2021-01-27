@@ -7,7 +7,9 @@ import CheckoutItem from "../../components/checkout-item/checkout-item";
 import { makePayment } from "../../redux/user/user.actions";
 import FormInput from "../../components/form-input/form-input";
 import {withRouter} from 'react-router-dom';
-import {clearCart} from '../../redux/cart/cart.actions'
+import {clearCart} from '../../redux/cart/cart.actions';
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+
 
 
 
@@ -15,10 +17,10 @@ import {clearCart} from '../../redux/cart/cart.actions'
 class CheckoutPage extends React.Component {
 
   state = { 
-    mobileNumber:''
+    mobileNumber:'',
+    buttonText: 'Pay with Mpesa'
    }
-  
-  
+     
 
   handleChange = (event)=>{
     const { name, value} = event.target;
@@ -30,17 +32,17 @@ class CheckoutPage extends React.Component {
   handleSubmit= (event)=>{
     event.preventDefault();
     const { makePayment,clearCart, cartItems, total, history } = this.props; 
-    const {mobileNumber} = this.state;
-    
-    makePayment({mobileNumber,cartItems, total},history);
-    clearCart()
-    this.setState({...this.state, mobileNumber:''})    
+    const {mobileNumber} = this.state;    
+    // makePayment({mobileNumber,cartItems, total},history);
+    // clearCart()
+    // this.setState({...this.state, mobileNumber:''})    
     
 
   }
 
   render() { 
-    const { cartItems, total } = this.props;
+    const { cartItems, total, currentUser, history } = this.props;
+    const { buttonText } = this.state;
     return ( 
       <div className="checkout-page">
       <div className="checkout-header">
@@ -75,8 +77,14 @@ class CheckoutPage extends React.Component {
         style={{width:'250px'}}
         />
       </div>
-      <div>
-        <button  id='mpesa-btn' onClick={this.handleSubmit}>Pay with Mpesa</button>
+      <div className={`${ buttonText === 'Sending' ? 'sending': null }`}>
+        <button  id='mpesa-btn' onClick={(event)=>{
+          if(!currentUser){history.push('/login')}
+          this.setState({...this.state, buttonText: 'Sending'})
+          this.handleSubmit(event);          
+        }}>
+          {buttonText} <span className='spin'></span>
+        </button>
       </div>
     </div>
      );
@@ -86,6 +94,7 @@ class CheckoutPage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectTotal,
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({

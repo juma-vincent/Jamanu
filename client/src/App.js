@@ -19,8 +19,12 @@ import UserOrders from "./components/user/user-orders/user-orders";
 import PaymentPending from "./pages/payment-feedback/payment-pending/payment-pending";
 import PaymentSuccess from "./pages/payment-feedback/payment-success/payment-success";
 import PaymentFailure from "./pages/payment-feedback/payment-failure/payment-failure";
-
-
+import UserOrderDetail from "./components/user/user-order-detail/user-order-detail";
+import AdminOrders from "./components/admin/admin-orders/admin-orders";
+import AdminOrderDetail from "./components/admin/admin-order-detail/admin-order-detail";
+import AdminUploadedProducts from "./components/admin/admin-uploaded-products/admin-uploaded-products";
+import UploadNewProduct from './components/admin/admin-upload-product/admin-upload-product';
+import GoogleLogin from "./components/google-signin-option/login";
 
 
 
@@ -59,21 +63,37 @@ class App extends Component {
                       <Route exact path="/checkout" component={CheckoutPage} />
                       <Route exact path="/payment_pending" component={PaymentPending} />
                       <Route exact path="/payment_success" component={PaymentSuccess} /> 
-                      <Route exact path="/payment_failure" component={PaymentFailure} />   
+                      <Route exact path="/payment_failure" component={PaymentFailure} /> 
+                      <Route exact path="/login" component={GoogleLogin} /> 
                                           
                       <Route                      
                       path="/admin"
-                      render={(props) => (currentUser? <AdminDashboard {...props}/> : <Redirect to="/"  />)}
+                      render={() => (currentUser?                         
+                         <>
+                           <Route exact path="/admin" component={AdminDashboard} />
+                           <Route exact path="/admin/orders" component={AdminOrders} />
+                           <Route path='/admin/products' component={AdminUploadedProducts}/>
+                           <Route path='/admin/new_product' component={UploadNewProduct}/>
+                           <Route exact path="/admin/orders/:orderId" component={AdminOrderDetail} />  
+                         </>
+                          : 
+                          <Redirect to="/"  />)}
                       />
+
                       <Route
                       exact
                       path="/dashboard"
                       render={() => (currentUser ? <UserDashboard/> : <Redirect to="/"  />)}
                       />
-                      <Route
-                      exact
-                      path="/user/orders"
-                      render={() => (currentUser ? <UserOrders/> : <Redirect to="/"  />)}
+                      <Route                      
+                          path="/user/"
+                          render={() => (currentUser ?
+                            <>
+                            <Route exact path="/user/orders" component={UserOrders} />
+                            <Route exact path="/user/orders/:orderId" component={UserOrderDetail} />  
+                            </>
+                              : 
+                          <Redirect to="/"  />)}
                       />
                       
                    
@@ -88,6 +108,8 @@ class App extends Component {
             }
                     
             
+
+
         
       </div>
     );

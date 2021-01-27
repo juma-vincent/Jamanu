@@ -1,9 +1,9 @@
-.user-orders-container{
+.admin-orders-container{
     display: flex;
     flex-direction: column;
     align-items: center;
 
-      .user-orders{  
+      .admin-orders{  
       display: flex;
       justify-content: space-between;
       //  border-bottom: grey solid 1px;
@@ -31,19 +31,38 @@
             border-radius: 3px;
             outline: none;
             cursor: pointer;
-            font-family: Verdana;
+            font-family: 'Verdana';
+          }
+          #update-order-btn{
+            font-size: 11px; 
+            height: 30px;
+            align-self: center;
+            background-color: rgb(240, 172, 26);
+            color: white;
+            border:  rgb(240, 172, 26);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+            font-family: 'Verdana';
           }
 
         @media screen and (max-width: 800px) {
+          
           #order-btn{
             font-size: 6px; 
-            height: 20px;
-            align-self: center;
-            
+            height: 15px;
+            align-self: center;            
+          }
+
+          #update-order-btn{
+            font-size: 6px; 
+            height: 15px;
+            align-self: center;            
           }
 
             width: 98%;
-            font-size: 6px;
+            font-size: 5px;
         }
       }
+    
 }

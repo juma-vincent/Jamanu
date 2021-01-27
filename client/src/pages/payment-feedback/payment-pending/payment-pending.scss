@@ -1,0 +1,33 @@
+ .payment-pending-spinner-overlay{
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+        #payment-pending-spin{
+
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border: 3px solid whitesmoke;
+            border-radius: 50%;
+            border-top-color: rgba(99, 8, 8, 0.678);
+            border-bottom-color:  rgba(99, 8, 8, 0.664);
+            animation: spin 1s ease-out infinite;
+            -webkit-animation: spin 1s ease-out infinite;
+            @keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+            }
+            @-webkit-keyframes spin {
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+            }
+
+        }
+
+    
+  }

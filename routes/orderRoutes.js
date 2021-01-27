@@ -11,8 +11,7 @@ const User = mongoose.model('users');
 
 module.exports = (app)=>{
 
-    app.post('/api/stk_callback', async (req, res)=>{
-        console.log("==========STK ====CALLBACK IS HERE ");
+    app.post('/api/stk_callback', async (req, res)=>{        
 
         await User.updateOne({ 
                                 phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() 
@@ -22,20 +21,10 @@ module.exports = (app)=>{
                             }
 
             
-        ).exec();
-        console.log("==========+ 'I am here' ");
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value + 'I am here');
-        console.log("===TOSTRING=======+ 'I am here' ");
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() + 'I am here');
-        console.log("===BODY.NUMBER=======+ 10");
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString() + 10);
-        
-
-        
+        ).exec();            
 
         const user = await User.findOne({phoneNumber: req.body.Body.stkCallback.CallbackMetadata.Item[3].Value.toString()})  
-        console.log('---IM THE USER WHO SUCCESFULLY PAID')                 
-        console.log(user)
+        
         const cartItems = user.cartItems;    
 
          //Create a new order and save it to the db                   
@@ -58,56 +47,27 @@ module.exports = (app)=>{
                             }
 
 
-        ).exec();
-
-        
-        // console.log('UPDATED USER  ----WITH 1 MORE ORDER======HENCE NO OF ORDERS====', user.ordersMade)
-        console.log('--------------STK ---------- AFTER----PAYMENT---RESPONSE') 
-        console.log('------------------Body--------------') 
-        console.log(req.body.Body) ; 
-        console.log('------------Body DOT -----STKCALLBACK') 
-        console.log(req.body.Body.stkCallback) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA--------') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----ITEM----') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item) ;
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA----0----Amount') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[0].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-----1---MpesaReceiptNumber') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[1].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-- 2------DATE TRANS') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[2].Value) ; 
-        console.log('B-----------Body DOT -----STKCALLBACK DOT CALLBACK----- METADATA-------ITEM3-PHONE NUMBER') 
-        console.log(req.body.Body.stkCallback.CallbackMetadata.Item[3].Value) ; 
-        // console.log('-------------REQUEST USER OBJECT CARTITEMS-----------',user.cartItems);
-
-        // req.body.Body.ResultCode;
-        // req.body.Body.ResultDesc;
-
-        
+        ).exec();        
 
         res.status(200).send('Success');       
-        // res.redirect(307, '/api/new_order');
+        // To redirect a post req to another route handler, we can add 307 like below, to retain the data
+        // res.redirect(307, '/api/new_order'); 
         
-        
-        
-
-       
-        
-        
-        
-           
-      
+        // req.body.Body.ResultCode;
+        // req.body.Body.ResultDesc;
+        // Transaction timestamp : req.body.Body.stkCallback.CallbackMetadata.Item[2].Value     
        
     
-})   
+    })   
+
+
 
     app.post('/api/new_order', requireLogin, getMpesaOauthToken, async(req, res)=>{
        const { cartItems, total, mobileNumber } = req.body;       
 
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
         const refinedNumber = '2547'+ lastEight;
-        console.log(refinedNumber)
+        
 
         //We are setting the req.user's db's phone no. as the one entered in the client form
         await User.updateOne({
@@ -121,18 +81,13 @@ module.exports = (app)=>{
 
         
 
-        const user = await User.findOne({_id: req.user.id})     
-        console.log('------NEW ORDER  ------PHONE')  
-        console.log(user)   
-            
+        const user = await User.findOne({_id: req.user.id})                
         
-        const access_token = req.access_token
+        const access_token = req.access_token       
         
         
-        // ----------------------------------------------------------------MPESA API
         const endpoint = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-        auth = "Bearer " + access_token; 
-        let datenow = new Date();        
+        auth = "Bearer " + access_token;               
 
         let d = new Date();
         d = new Date(d.getTime() - 3000000);
@@ -141,31 +96,12 @@ module.exports = (app)=>{
         +(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+""
         +(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+""
         +((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+"00";
-        console.log("REFINED TIMESTAMP =======", timestamp);
-                 
-        // const year = datenow.getFullYear().toString();
-        let addedmonth = datenow.getMonth()+1 //months starts from 0 in Javascript
-        const stringmonth = (addedmonth < 10 ? '0' : '') + (addedmonth.toString()); 
-        // Since months in Javascript are in array form, so January is returned as 0, and we add 0 as a string
-        //before it incase the current month is less than 10.
-        // If the current month+ 1 is more than 10, we add empty string ''.
-        // We then append the string value of the month +1         
-    
-        // const day = datenow.getDate().toString();
-        // const hours = datenow.getHours().toString();
-        // const minutes = datenow.getMinutes().toString();
-        // const seconds = datenow.getSeconds().toString()
-    
-        // const rawtimestamp = year + stringmonth + day + hours + minutes + "00"    
-        // const timestamp = datenow.getFullYear().toString() + datenow.getMonth() +  datenow.getDate().toString() + datenow.getHours().toString() + datenow.getMinutes().toString() +  datenow.getSeconds().toString()       
-    
-        // console.log("Timestamp", timestamp);
-        // let valid = (new Date(timestamp)).getTime() > 0;
-        // console.log(valid)
-        const password = new Buffer.from("174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp).toString('base64')
-        // console.log("--------===================USER ===NEW ===========mobileNumber")
         
-        // console.log("Password", password)
+                 
+      
+        
+        const password = new Buffer.from("174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp).toString('base64')
+        
 
          
 
@@ -206,36 +142,12 @@ module.exports = (app)=>{
                     }
                 )
          
-    // const result = updateOrder()
-    // if(result){
-    //     console.log('===================PAYMENT =====SUCCESSFULL==========')
-    //     console.log('===================RESULT IS ==========')
-    //     console.log(result)       
-
-        
-    //     console.log('===================PAYMENT =====SUCCESSFULL==========')
-    //     console.log('===================PAYMENT =====SUCCESSFULL==========')
-    //     console.log('===================RESULT FIRST ITEM ===============')
-    //     console.log(result.stkCallback.CallbackMetadata.Item[1].Value)
+    
         // await order.save();
         // req.user.ordersMade +=1;
         // const user = await req.user.save();
-        // res.send(user)
-    // }
-               
-        // ----------------------------------------------------------------MPESA API
-
-
-
         
-
-        
-
-        
-    //    }catch(err){
-    //        res.status(422).send(err); // 422 means Something is wrong with the MPESA center, like network issues
-
-    //    }
+    
 
        
     })
@@ -257,58 +169,31 @@ module.exports = (app)=>{
 
         res.send(orders);
     });
-    
-   app.post('/api/check_order_update', async (req, res)=>{    
-       req.setTimeout(300000);
-       const { user } = req.body;
-       
-       console.log('-----------INCOMING---USER OBJECT-BEFORE --ORDER-COMPARISON---')
-       console.log(user)
 
-       
+    
+   app.post('/api/check_order_update', async (req, res)=>{ 
+
+        //We use req.setTimeout(300000); to tell the server what amount of timeout we want for requests
+
+        const { user } = req.body;      
+
+        
         const getOrderUpdate = async ()=>{
             const foundUser = await User.findOne({_id: user._id}).exec()
-            console.log('======FOUNNNNND ------USERRRRRRRRR');
-            console.log(foundUser)
-            console.log('======FOUNNNNND ------USERRRRRRRRRS ORDERS MADE-----')
-            console.log(foundUser.ordersMade)
-            if(foundUser.ordersMade > user.ordersMade){
-                console.log('======FOUNNNNND ===AN ORDER INCREMENT, HENCE SUCCESSFUL ORDER')
-                
-            res.send(foundUser)  
             
-            }else{
-                console.log('=NO=====FOUNNNNND == ORDER INCREMENT, HENCE NO ORDER YET')
-                // res.send({"error":"Unable to process payment"})
-
+            if(foundUser.ordersMade > user.ordersMade){              
+                
+                res.send(foundUser)  
+            
             }
         }
-         
-
-        
-     
-      
-    //   setTimeout(getOrderUpdate, 10000);
-      
-
-       let timerId = setInterval(async () =>{
-           getOrderUpdate()
-
-            // const foundUser = await User.findOne({_id: user.id})
-            // if(foundUser.ordersMade===user.ordersMade){
-            //     console.log('-----------FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
-            //     console.log(foundUser)
-            //     res.send(foundUser)
-            // }
-            // console.log('---NOT--YET-----FOUND---USER OBJECT-DURING --ORDER-COMPARISON---')
-
-       }, 5000);
-
-        // after 50 seconds stop
-        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 20000);
+                    
         
 
-        
+        let timerId = setInterval(() =>{ getOrderUpdate() }, 5000);
+
+        // after 20 seconds stop
+        setTimeout(() => { clearInterval(timerId); res.json({ "error":"Time out"}); } , 20000);        
         
 
    })

@@ -29,7 +29,8 @@ const ProductItem = ({ item, addItem }) => {
         addItem(item) ;
         setBtnText('Added to cart')
         }}>
-        <span id='btn-text'>{btnText}</span>  <img src={checkmark} alt="" style={ btnText==='Added to cart' ? {opacity: '1'}: {opacity:'0'}}/>
+        <span id='btn-text'>{btnText}</span> 
+        <img src={checkmark} alt="" style={ btnText==='Added to cart' ? {opacity: '1'}: {opacity:'0'}}/>
       </CustomButton>
     </div>
   );

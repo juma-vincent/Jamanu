@@ -3,27 +3,24 @@ import { Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
-import { Route } from 'react-router-dom';
-import UploadNewProduct from "../../components/admin/admin-upload-product/admin-upload-product";
-import AdminUploadedProducts from "../../components/admin/admin-uploaded-products/admin-uploaded-products";
+import './admin-dashboard.scss';
+
 
 
   
-  const AdminDashboard = ({currentUser, match}) => {
+  const AdminDashboard = ({currentUser}) => {
     return ( 
-  <div>
+  <div className='admin-dashboard'>
     
-  <h2>Welcome Admin <span style={{color:'orange'}}>{currentUser.name}</span> 
-     <span> you have <span style={{color:'orange'}}>{currentUser.uploadedProducts}</span> uploads</span>
-  </h2>
-  <div style={{display:'flex',justifyContent:"space-around",width:'50%',margin:'auto',padding:'20px'}}>
-  <Link to='/admin/new_product' style={{backgroundColor:'whitesmoke',padding:'10px'}}>Add new product</Link><br/>
-  <Link to='/admin/products' style={{backgroundColor:'whitesmoke',padding:'10px'}}>View upload history</Link><br/>
-  <Link to='/dashboard' style={{backgroundColor:'whitesmoke',padding:'10px'}}>Back to User Dashboard</Link>
-  </div>
-
-  <Route path={`${match.url}/products`} component={AdminUploadedProducts}/>
-  <Route path={`${match.url}/new_product`} component={UploadNewProduct}/>
+      <h2>Welcome Admin <span style={{color:'orange'}}>{currentUser.name}</span> 
+        <span> you have <span style={{color:'orange'}}>{currentUser.uploadedProducts}</span> uploads</span>
+      </h2>
+      <div className='admin-dashboard-content'>
+      <Link to='/admin/new_product' className='admin-dashboard-link'>Add new product</Link>
+      <Link to='/admin/products' className='admin-dashboard-link'>View upload history</Link>
+      <Link to='/dashboard' className='admin-dashboard-link'>Back to User Dashboard</Link>
+      <Link to='/admin/orders' className='admin-dashboard-link'>View all orders</Link>
+      </div>
     
     
   </div>
