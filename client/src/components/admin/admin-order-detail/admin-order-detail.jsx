@@ -58,7 +58,7 @@ class AdminOrderDetail extends React.Component {
     
                             <div className="order-detail-text">                            
                                 <span className="order-detail-text-header"> Order Amount  </span> 
-                                <span className="order-detail-text-value">{order.amount}</span>
+                                <span className="order-detail-text-value">KES {' '}{order.amount}</span>
                             </div>
     
                             <div className="order-detail-text">                           
