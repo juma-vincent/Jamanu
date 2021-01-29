@@ -1,5 +1,5 @@
 import React from "react";
-import {ReactComponent as Error } from  '../../../assets/icons/error.svg'
+import {ReactComponent as Error } from  '../../../assets/error2.svg'
 
 
 
