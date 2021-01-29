@@ -8,11 +8,19 @@ import ProductsPreview from "../products-preview/products-preview";
 
 const ProductsOverview = ({ products }) => {
   return (
-    <div className="products-overview">
+    <>
+    {products? 
+    (
+      <div className="products-overview">
       {products.map(({ id, ...otherProductProps }) => (
         <ProductsPreview key={id} {...otherProductProps} />
       ))}
     </div>
+    ): 
+    <h3>Loading</h3>
+  }
+
+    </>
   );
 };
 

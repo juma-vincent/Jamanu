@@ -11,13 +11,15 @@ class ProductsPage extends React.Component {
   render() { 
     
     return ( 
+      
+      
       <>
         {this.props.categoryItems?
         (
          <div className="products-page">
            
             <h2 className="title"> {this.props.categoryItems.title.toUpperCase()}</h2>
-            <div className="items">          
+            <div className="items">            
               {this.props.categoryItems.items.map((item) => (
                 <ProductItem
                 className="product-item"
@@ -47,10 +49,8 @@ const mapStateToProps = (state, ownProps) => ({
   ),
 });
 
-const mapDispatchToProps = (dispatch) => ({  
-  
-});
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
+
+export default connect(mapStateToProps)(ProductsPage);

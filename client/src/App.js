@@ -36,13 +36,14 @@ class App extends Component {
   
    async componentDidMount() {
      await this.props.fetchUser();
-     this.setState({isLoaded: true});
-     this.props.fetchAllProducts()     
+     this.setState({isLoaded: true});     
+     this.props.fetchAllProducts()
     
   }
 
   render() {
-    const { currentUser } = this.props;       
+    const { currentUser } = this.props;   
+     
 
 
     return (

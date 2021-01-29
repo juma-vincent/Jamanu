@@ -35,13 +35,13 @@ export const fetchProductsStartAsync = () => {
 
 export const fetchAllProducts = ()=>async dispatch=>{
   const res = await axios.get('/api/all_products');
-  dispatch({ type: ShopActionTypes.FETCH_PRODUCTS_SUCCESS, payload: res.data})
+  const prodObjects = convertProductsArrayToObject(res.data)
+  dispatch({ type: ShopActionTypes.FETCH_PRODUCTS_SUCCESS, payload: prodObjects})
 }
 
 export const fetchOrders = ()=> async dispatch=>{
   const res = await axios.get('/api/admin/all_orders');
-  const prodObject= convertProductsArrayToObject(res.data)
-  dispatch({type: ShopActionTypes.FETCH_ORDERS, payload: prodObject});
+  dispatch({type: ShopActionTypes.FETCH_ORDERS, payload: res.data})
 }
 
 export const updateOrderStatus = ({orderId, status})=>async dispatch=>{
