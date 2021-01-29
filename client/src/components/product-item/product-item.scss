@@ -10,32 +10,44 @@
   border-bottom: rgb(153, 153, 175) 1px solid;
     
 
-  &:hover {
-    .image {
-      opacity: 0.8;
-    }
-
-    .custom-button {
-      opacity: 0.85;
-      display: flex;
-    }
-  }
-  @media screen and (max-width: 800px) {
     &:hover {
       .image {
-        opacity: unset;
+        opacity: 0.8;
+      }
+
+      .custom-button {
+        opacity: 0.85;
+        display: flex;
       }
     }
+    @media screen and (max-width: 800px) {
+      &:hover {
+        .image {
+          opacity: unset;
+        }
+      }
 
-    height: 295px;
-    width: 40vw;
+      height: 295px;
+      width: 40vw;
+    }
+
+    @media screen and (max-width: 400px) {
+      height: 250px;
+    }
+
+  #product-item-checkmark{
+    height: 40px;
+    width: 40px;
+    padding-top: 10px;
+  
+    @media screen and (max-width: 400px) {
+      padding-top: unset;
+      height: unset;
+      width: unset;
+    }
   }
-
-  @media screen and (max-width: 400px) {
-    height: 250px;
-  }
-
   #btn-text{
+    
     @media screen and (max-width: 400px) {
       font-size: 9px;
     }
