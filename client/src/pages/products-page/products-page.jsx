@@ -22,8 +22,8 @@ class ProductsPage extends React.Component {
             <div className="items">            
               {this.props.categoryItems.items.map((item) => (
                 <ProductItem
-                className="product-item"
                 key={item.id}
+                className="product-item"                
                 item={item}
                 />
               ))}

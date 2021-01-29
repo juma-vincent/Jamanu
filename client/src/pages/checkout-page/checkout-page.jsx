@@ -33,7 +33,7 @@ class CheckoutPage extends React.Component {
     event.preventDefault();
     const { makePayment,clearCart, cartItems, total, history } = this.props; 
     const {mobileNumber} = this.state;    
-    // makePayment({mobileNumber,cartItems, total},history);
+    makePayment({mobileNumber,cartItems, total},history);
     // clearCart()
     // this.setState({...this.state, mobileNumber:''})    
     
