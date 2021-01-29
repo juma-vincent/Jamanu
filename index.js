@@ -49,18 +49,6 @@ app.get('*', (req, res)=>{
 })
 }
 
-
-
-
-
-
-
-// app.post('/stk_callback', (req, res)=>{
-//     console.log('-----------------STK-----------------')
-//     console.log(req.body)
-//     res.send(req.body)
-// })
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
 

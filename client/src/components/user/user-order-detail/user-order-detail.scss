@@ -72,10 +72,11 @@
                             height: 100%;
                             width: 60%;
                             
-                            background-size: cover;
+                            background-size: contain;
                             background-position: center;
                             background-repeat: no-repeat;
                             // border: orange solid 1px;
+                            background-color: whitesmoke;
 
                             @media screen and (max-width: 800px) {                                       
                             width: 100%;            
