@@ -25,10 +25,7 @@ import AdminOrderDetail from "./components/admin/admin-order-detail/admin-order-
 import AdminUploadedProducts from "./components/admin/admin-uploaded-products/admin-uploaded-products";
 import UploadNewProduct from './components/admin/admin-upload-product/admin-upload-product';
 import GoogleLogin from "./components/google-signin-option/login";
-import { fetchAllProducts} from "./redux/shop/shop.actions";
-
-
-
+import { fetchAllProducts } from "./redux/shop/shop.actions";
 
 
 class App extends Component {
@@ -39,14 +36,13 @@ class App extends Component {
   
    async componentDidMount() {
      await this.props.fetchUser();
-     this.setState({isLoaded: true})
-     this.props.fetchAllProducts();
+     this.setState({isLoaded: true});
+     this.props.fetchAllProducts()     
     
   }
 
   render() {
-    const { currentUser } = this.props;   
-     
+    const { currentUser } = this.props;       
 
 
     return (
@@ -119,7 +115,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: () => dispatch(fetchUser()),
+  fetchUser: () => dispatch(fetchUser()), 
   fetchAllProducts: () => dispatch(fetchAllProducts()),
 });
 

@@ -5,9 +5,10 @@
         font-size: 18px;
         color: white;
         // border-bottom: black solid 1.2px;
-        border-radius: 3px;        
+        border-radius: 6px;        
         font-weight: 500;
         margin: 0 5px;
+        padding: 6px;
         
         cursor: pointer;
         transition: all 0.5s;
@@ -15,7 +16,7 @@
         &:hover {
         color: rgb(192, 144, 81);
         animation: pulsate 1s;
-        padding: 6px;
+       
         border-color: rgb(192, 144, 81);
         }
 

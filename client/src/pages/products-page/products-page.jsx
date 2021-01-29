@@ -3,28 +3,43 @@ import "./products-page.scss";
 import { connect } from "react-redux";
 import ProductItem from "../../components/product-item/product-item";
 import { selectEachProduct } from "../../redux/shop/shop.selectors";
+import Spinner from "../../components/spinner/spinner";
 
 
-const ProductsPage = ({ categoryItems}) => {
-  const { title, items } = categoryItems; 
+class ProductsPage extends React.Component {
   
-  return (    
-   
-      <div className="products-page">
-        <h2 className="title"> {title.toUpperCase()}</h2>
-          <div className="items">
-          {items.map((item) => (
-          <ProductItem
-          className="product-item"
-          key={item.id}
-          item={item}
-          />
-          ))}
-        </div>
-     </div>
+  render() { 
     
-  );
-};
+    return ( 
+      <>
+        {this.props.categoryItems?
+        (
+         <div className="products-page">
+           
+            <h2 className="title"> {this.props.categoryItems.title.toUpperCase()}</h2>
+            <div className="items">          
+              {this.props.categoryItems.items.map((item) => (
+                <ProductItem
+                className="product-item"
+                key={item.id}
+                item={item}
+                />
+              ))}
+            </div>
+            
+          </div>
+        )
+        :
+        <Spinner/>
+        }
+      </>
+    
+     );
+  }
+}
+ 
+
+
 
 const mapStateToProps = (state, ownProps) => ({
   categoryItems: selectEachProduct(ownProps.match.params.productId)(
@@ -32,6 +47,10 @@ const mapStateToProps = (state, ownProps) => ({
   ),
 });
 
+const mapDispatchToProps = (dispatch) => ({  
+  
+});
 
 
-export default connect(mapStateToProps)(ProductsPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
