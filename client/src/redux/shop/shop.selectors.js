@@ -18,3 +18,8 @@ export const selectIsProductsFetching = createSelector(
   [selectShop],
   (shop) => shop.isFetching
 );
+
+export const selectOrders = createSelector(
+  [selectShop],
+  (shop) => shop.orders
+);

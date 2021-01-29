@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './admin-orders.scss';
 import { withRouter } from 'react-router-dom';
 import Spinner from '../../spinner/spinner';
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectOrders } from '../../../redux/shop/shop.selectors';
+import { fetchOrders } from '../../../redux/shop/shop.actions';
+
 
 const renderAdminOrders = (history, match, orders)=>{
     return(
@@ -89,13 +93,8 @@ const renderAdminOrders = (history, match, orders)=>{
                         See Order details
                         </button>
                         
-                        </div>
+                        </div>                        
                         
-                        <div>
-                        <button id='update-order-btn'>
-                        Update Order status
-                        </button>
-                        </div>
                     </div>
                     
                 </div>
@@ -113,24 +112,23 @@ const renderAdminOrders = (history, match, orders)=>{
 
 class AdminOrders extends Component {
     state = { 
-        isLoaded: false,
-        orders:[]
+        isLoaded: false,        
      }
 
     async componentDidMount(){
-        const res = await axios.get('/api/admin/all_orders');
-        this.setState({...this.state, orders: res.data, isLoaded: true})
+        await this.props.fetchOrders();
+        this.setState({...this.state, isLoaded: true})        
     }
     
     render() { 
 
         const {history, match} = this.props;
-        const {orders} = this.state;
+        const {orders} = this.props;
         
         return ( 
            <div>
                {this.state.isLoaded?            
-           renderAdminOrders(history, match, orders)
+           renderAdminOrders(history, match, orders)           
            :
            
            <Spinner/>
@@ -139,5 +137,14 @@ class AdminOrders extends Component {
         );
     }
 }
- 
-export default withRouter(AdminOrders);
+
+const mapStateToProps = createStructuredSelector({
+    orders: selectOrders,
+  });
+
+const mapDispatchToProps = (dispatch)=>({
+    fetchOrders: ()=> dispatch(fetchOrders()),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AdminOrders));

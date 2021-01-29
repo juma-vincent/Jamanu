@@ -78,6 +78,7 @@ class UploadNewProduct extends Component {
                     
                     <label htmlFor='category'><span className='label-name'>Category </span> 
                         <select value={category}  name='category' onChange={this.handleChange}>
+                        <option value=''>Not Selected</option>
                         <option value='cereals'>Cereal</option>
                         <option value="legumes">Legume</option>
                         <option value="vegetables">Vegetable</option>

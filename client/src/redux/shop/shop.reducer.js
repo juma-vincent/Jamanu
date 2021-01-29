@@ -3,6 +3,7 @@ import { ShopActionTypes } from "./shop.types";
 
 const INITIAL_STATE = {
   products: [],
+  orders: [],
   isFetching: false,
   errorMessage: undefined,
 };
@@ -26,6 +27,10 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
+    case ShopActionTypes.FETCH_ORDERS:
+      return {
+        ...state, orders: action.payload,
+      }
     default:
       return state;
   }

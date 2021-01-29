@@ -1,11 +1,12 @@
 import React from "react";
 import "./products-preview.scss";
 import ProductItem from "../product-item/product-item";
+import { withRouter } from "react-router-dom";
 
 
 
 
-const ProductsPreview = ({ title, items }) => {
+const ProductsPreview = ({ title, items, history, match }) => {
   return (
     <div className="products-preview">
       <h2 className="title">{title.toUpperCase()}</h2>
@@ -16,8 +17,9 @@ const ProductsPreview = ({ title, items }) => {
             <ProductItem key={item._id} item={item} />
           ))}
       </div>
+      <h5 onClick={()=> history.push(`${match.path}/${title}`)}>View all {title}</h5>
     </div>
   );
 };
 
-export default ProductsPreview;
+export default withRouter(ProductsPreview);

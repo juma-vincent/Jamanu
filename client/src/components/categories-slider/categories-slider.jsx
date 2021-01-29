@@ -61,8 +61,8 @@ const CategoriesSlider = ({autoPlay, categoryData}) => {
                   }
                   
                 </div>
-                <Arrow direction='left' handleClick={goLeft}/>
-                <Arrow direction='right' handleClick={goRight}/>
+                <Arrow direction='left' handleClick={goLeft} categoryArrow/>
+                <Arrow direction='right' handleClick={goRight} categoryArrow/>
             </SliderContainer>
         
       );

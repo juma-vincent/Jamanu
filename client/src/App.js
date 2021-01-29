@@ -25,6 +25,7 @@ import AdminOrderDetail from "./components/admin/admin-order-detail/admin-order-
 import AdminUploadedProducts from "./components/admin/admin-uploaded-products/admin-uploaded-products";
 import UploadNewProduct from './components/admin/admin-upload-product/admin-upload-product';
 import GoogleLogin from "./components/google-signin-option/login";
+import { fetchAllProducts} from "./redux/shop/shop.actions";
 
 
 
@@ -39,6 +40,7 @@ class App extends Component {
    async componentDidMount() {
      await this.props.fetchUser();
      this.setState({isLoaded: true})
+     this.props.fetchAllProducts();
     
   }
 
@@ -83,7 +85,7 @@ class App extends Component {
                       <Route
                       exact
                       path="/dashboard"
-                      render={() => (currentUser ? <UserDashboard/> : <Redirect to="/"  />)}
+                      render={(props) => (currentUser ? <UserDashboard {...props}/> : <Redirect to="/"  />)}
                       />
                       <Route                      
                           path="/user/"
@@ -118,6 +120,7 @@ class App extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: () => dispatch(fetchUser()),
+  fetchAllProducts: () => dispatch(fetchAllProducts()),
 });
 
 const mapStateToProps = createStructuredSelector({

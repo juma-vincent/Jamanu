@@ -1,21 +1,23 @@
   .user-dashboard-content{
       font-family: Verdana, Geneva, Tahoma, sans-serif;
-      display: flex;
+      display: flex;      
       justify-content: space-around;
       width: 50vw;
       margin: auto;
       padding: 20px;
       
         .user-dashboard-link{
-            background-color: wheat;
+            background-color: goldenrod;
             height: 35px;
             padding: 7px 10px;
             border-radius: 2px;
-            color: gray;            
-            font-size: 12.5px;
-            font-weight: 600; 
+            color: white;            
+            font-size: 13.5px;
+            font-weight: 500; 
             margin: 20px; 
-            width: 40vw;  
+            width: 40vw; 
+            cursor: pointer; 
+            text-shadow: 1px 1px 2px rgb(119, 113, 113);
         
         }
 

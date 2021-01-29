@@ -1,7 +1,6 @@
 .category-item {
     position: relative;
-    display: flex;
-    border: solid rgb(134, 131, 131) 1px;
+    display: flex;    
     // min-width: 30%;
     height: 200px;
     flex: 1 1 30%; //30% is the flex basis which is the flex items width. The other ones are grow and shrink
@@ -73,7 +72,7 @@
   
     .subtitle {
       font-weight: 600;
-      font-size: 16px;
+      font-size: 16px;      
   
       @media screen and (max-width: 800px) {
         font-weight: bold;

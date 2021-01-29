@@ -51,6 +51,73 @@
             
         }
 
+        .order-detail-input-container{
+            display: flex;  
+            flex-direction: column;             
+            width: 80vw;
+            align-self: center;
+            box-shadow: 0px 0px 5px rgba(70, 67, 67, 0.4);
+            margin: 20px 0; 
+
+                label{
+                    display: block;  
+                    display: flex;
+                    flex-direction: row;                      
+                    align-self: center;  
+                    width: 60%;                      
+                    
+                        .label-name{
+                            margin-top: 35px;
+                            margin-bottom: 0;
+                            font-weight: 500;
+                            font-size: 19px;
+                            margin-right: 20px; 
+                            margin-bottom: 10px;
+                            
+                        }
+
+
+                    @media screen and (max-width: 800px) {                                       
+                        width: 90%; 
+                        font-size: 12px;           
+                    }
+                
+                }
+
+                input, select {
+                    width:  80%;
+                    border: none;
+                    padding-top: 10px;
+                    // margin-right: 30px;        
+                    color: orange;
+                    border-bottom: solid lightblue 3px;
+                    font-size: 16px;
+                    margin-top: 20px;   
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;   
+                    align-self: center;              
+
+                    &:focus {
+                        outline: none;
+                        border-bottom: solid lightblue 2px;
+                    }
+                    
+                }
+
+                #update-order-btn{
+                    font-size: 14px; 
+                    height: 35px;
+                    align-self: center;
+                    background-color: rgb(240, 172, 26);
+                    color: white;
+                    border:  rgb(240, 172, 26);
+                    border-radius: 3px;
+                    outline: none;
+                    cursor: pointer;
+                    font-family: 'Verdana';
+                    margin: 30px 10px;
+                  }
+        }
+
        
 
         .order-product-wrapper{

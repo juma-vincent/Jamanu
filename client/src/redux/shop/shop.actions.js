@@ -1,5 +1,6 @@
 import { ShopActionTypes } from "./shop.types";
 import { convertProductsArrayToObject } from "./shop.utils";
+import axios from 'axios';
 
 
 export const fetchProductsStart = {
@@ -24,11 +25,32 @@ export const fetchProductsStartAsync = () => {
     fetch("/api/all_products")
       .then((response) => response.json())
       .then((data) => {
-        const productsObject = convertProductsArrayToObject(data);
-        console.log(productsObject)
+        const productsObject = convertProductsArrayToObject(data);        
         dispatch(fetchProductsSuccess(productsObject));
       })
       .catch((error) => dispatch(fetchProductsFailure(error.message)));
     
   };
 };
+
+export const fetchAllProducts = ()=>async dispatch=>{
+  const res = await axios.get('/api/all_products');
+  dispatch({ type: ShopActionTypes.FETCH_PRODUCTS_SUCCESS, payload: res.data})
+}
+
+export const fetchOrders = ()=> async dispatch=>{
+  const res = await axios.get('/api/admin/all_orders');
+  dispatch({type: ShopActionTypes.FETCH_ORDERS, payload: res.data})
+}
+
+export const updateOrderStatus = ({orderId, status})=>async dispatch=>{
+  await axios.put( `/api/update_order_status`,
+  {
+      orderId,
+      newStatus: status,
+  });
+  dispatch(fetchOrders());
+}
+
+
+

@@ -152,7 +152,20 @@ module.exports = (app)=>{
        
     })
 
-    
+    app.put('/api/update_order_status', requireLogin, requireAdmin, async (req, res)=>{
+        const { newStatus, orderId } = req.body;
+
+        await Order.updateOne({
+            _id: orderId
+        },
+        {
+            $set : { status: newStatus},
+            
+
+        })
+
+        res.send(req.user)
+    })
 
     
     app.get('/api/admin/all_orders', requireLogin, requireAdmin, async (req, res)=>{

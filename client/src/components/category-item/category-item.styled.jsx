@@ -75,7 +75,7 @@ export const CategoryItemContainer = styled.div`
         @media screen and (max-width: 800px) {
         font-weight: bold;
         margin-bottom: 3px;
-        font-size: 14px;        
+        font-size: 12px;        
         }
    }
 

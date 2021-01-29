@@ -17,6 +17,13 @@ export const SliderContainer = styled.div`
         overflow: hidden;    
         align-items: center;
         
+
+        @media screen and (max-width: 800px) {
+            width:95%;
+            
+            
+        }
+        
     }
     
     

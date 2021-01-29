@@ -40,9 +40,9 @@ const renderUserOrders = (history, match, orders)=>{
                                 </span>
                             </div>
 
-                            <div>Amount : {' '}
+                            <div>Amount : KES{' '}
                                 <span style={{fontWeight: 'bold', color:'orange'}}>
-                                    {order.amount}
+                                   {order.amount}
                                 </span>
                             </div>  
                         </div>
