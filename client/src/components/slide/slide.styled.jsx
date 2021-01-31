@@ -26,6 +26,7 @@ export const TextAndButtonContainer = styled.div`
       position: absolute;
       top: 10%;
       left: 25%;
+      text-shadow: 1px 1px 1px black;
       
       
       
@@ -34,7 +35,7 @@ export const TextAndButtonContainer = styled.div`
             font-weight:bold;
             color: white;
             text-align: start;
-            text-shadow: 2px 2px rgba(21, 28, 58, 0.28) ;
+            text-shadow: 1px 1px 1px rgba(21, 28, 58, 0.98) ;
       }
       p{
             font-size:20px;
@@ -57,6 +58,16 @@ export const TextAndButtonContainer = styled.div`
         
 
       }
+
+  @media screen and (max-width: 800px) {   
+   top: 20%;
+   left: 20%;
+   font-size: 13px;
+      button{
+            margin-left: -50%;
+      }
+      
+  }
 
       
 

@@ -24,19 +24,15 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
     
 }  
 
-const checkOrderUpdate= ({user},history)=> async dispatch=>{
-    console.log('------USER OBJECT BEFORE SENDING ORDER UPDATE------'); 
-    console.log(user);    
+const checkOrderUpdate= ({user},history)=> async dispatch=>{       
     const res = await axios.post(`/api/check_order_update`, {
     user: user
     })
-    if(res.data._id){
-        console.log('------USER OBJECT AFTER SENDING ORDER UPDATE------');
-        console.log(res.data);
+    if(res.data._id){        
         dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
         history.push('/payment_success')
     }else{
-        console.log('------TIME OUT ERROR------');
+        
         history.push('/payment_failure')
     }
 }   
@@ -47,17 +43,13 @@ export const makePayment = ({mobileNumber,cartItems, total}, history)=>
 
     
     async dispatch =>{  
-        console.log('------BEFORE SENDING ORDER  mobile num, total------'); 
-        console.log(mobileNumber);     
-        console.log(cartItems);  
-        console.log(total);   
+           
         const res = await axios.post(`/api/new_order`, {
         mobileNumber,
         cartItems,
         total
         });
-        console.log('------USER OBJECT FROM ORDER FIRST PROCESSING, NOT COMPLETED------'); 
-        console.log(res.data); 
+        
         const user= res.data;     
         history.push('/payment_pending');
         setTimeout(()=>  dispatch(checkOrderUpdate({user}, history)),50000);
