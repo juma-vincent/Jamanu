@@ -83,7 +83,7 @@ module.exports = (app)=>{
         
 
         const user = await User.findOne({_id: req.user.id}) ;
-        res.send(user)
+        
         
         // ======================================To be refactored
         
