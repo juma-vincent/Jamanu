@@ -39,6 +39,9 @@ const Header = ({ currentUser, hidden}) => {
           </div>
 
           <div className="options">
+          <a  href="https://wa.me/254712062516" >
+               <Option text='whatsapp'/> 
+              </a>
             <Link to="/" >
              <Option text='Home'/>              
             </Link>

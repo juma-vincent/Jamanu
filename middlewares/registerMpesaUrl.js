@@ -1,3 +1,4 @@
+//This is only for C2B
 const request = require('request');
 
 module.exports = (req, res, next)=>{
