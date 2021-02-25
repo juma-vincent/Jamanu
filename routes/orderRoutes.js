@@ -2,8 +2,8 @@ const requireLogin = require("../middlewares/requireLogin");
 const mongoose = require('mongoose');
 const requireAdmin = require("../middlewares/requireAdmin");
 const getMpesaOauthToken = require("../middlewares/getMpesaOauthToken");
-// const request = require('request');
-const requestForPaymentToMpesa = require("../middlewares/requestForPaymentToMpesa");
+const request = require('request');
+// const requestForPaymentToMpesa = require("../middlewares/requestForPaymentToMpesa");
 
 
 const Order = mongoose.model('orders');
@@ -64,8 +64,9 @@ module.exports = (app)=>{
 
 
     app.post('/api/new_order', requireLogin, getMpesaOauthToken, async(req, res)=>{
+        
        const { cartItems, total, mobileNumber } = req.body;       
-
+       console.log(total, mobileNumber);
        const lastEight = mobileNumber.substr(mobileNumber.length - 8); // We're getting the last 8 digits
         const refinedNumber = '2547'+ lastEight;
         
@@ -83,7 +84,6 @@ module.exports = (app)=>{
         
 
         const user = await User.findOne({_id: req.user.id}) ;
-        
         
         // ======================================To be refactored
         
@@ -106,7 +106,6 @@ module.exports = (app)=>{
         
         const password = new Buffer.from("174379" + "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919" + timestamp).toString('base64')
         
-
          
 
        
@@ -139,7 +138,7 @@ module.exports = (app)=>{
                             console.log(error);
                             res.status(400).send(error)
                             
-                        }                  
+                        }                                        
                         res.send(user);                       
                          
                         

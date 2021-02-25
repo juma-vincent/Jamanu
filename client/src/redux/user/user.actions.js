@@ -24,15 +24,14 @@ export const uploadProduct =({name, imageurl, price, category, unitType }, histo
     
 }  
 
-const checkOrderUpdate= ({user},history)=> async dispatch=>{       
+const checkOrderUpdate= ({user},history)=> async dispatch=>{              
     const res = await axios.post(`/api/check_order_update`, {
     user: user
     })
     if(res.data._id){        
         dispatch({type: UserActionTypes.FETCH_USER, payload: res.data})
-        history.push('/payment_success')
-    }else{
-        
+        history.push('/payment_success');        
+    }else{          
         history.push('/payment_failure')
     }
 }   
@@ -40,23 +39,23 @@ const checkOrderUpdate= ({user},history)=> async dispatch=>{
 
 
 export const makePayment = ({mobileNumber,cartItems, total}, history)=>
-
     
     async dispatch =>{  
-           
+                
         const res = await axios.post(`/api/new_order`, {
         mobileNumber,
         cartItems,
         total
         });
-        
+        console.log(res.data)
         const user= res.data;     
         history.push('/payment_pending');
-        setTimeout(()=>  dispatch(checkOrderUpdate({user}, history)),50000);
+        setTimeout(()=>  dispatch(checkOrderUpdate({user}, history)),35000);
         
         
         
     }
+
 
 
 
